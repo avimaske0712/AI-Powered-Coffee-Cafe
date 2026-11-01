@@ -24,16 +24,13 @@ The application features an AI-powered Barista Assistant that helps customers ex
 ## 📸 Project Screenshots
 
 ### 1. Login & Registration
-
-![Login Page](./Screenshots/login-page.png)
+![Login Page](./screenshots/login-page.png)
 
 ### 2. AI Recommendation Engine
-
-![AI Recommendation](./Screenshots/ai-recommendation.png)
+![AI Recommendation](./screenshots/ai-recommendation.png)
 
 ### 3. Coffee Cafe Homepage
-
-![Home Page](./Screenshots/home-page.png)
+![Home Page](./screenshots/home-page.png)
 
 ## 🛠️ Technologies Used
 
