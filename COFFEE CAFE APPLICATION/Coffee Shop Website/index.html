@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Cafe - Smart AI & Artisan Brews</title>
+    <!-- AUTH GATEWAY: Ensures login page opens first unless user is authenticated -->
+    <script>
+      (function() {
+        try {
+          const user = localStorage.getItem('cafe_current_user');
+          const guest = sessionStorage.getItem('cafe_guest_mode');
+          const urlParams = new URLSearchParams(window.location.search);
+          const hasBypassParam = urlParams.has('guest') || urlParams.has('login_success') || urlParams.has('registered');
+          
+          if (urlParams.has('guest')) {
+            sessionStorage.setItem('cafe_guest_mode', '1');
+          }
+          
+          if (!user && !guest && !hasBypassParam) {
+            window.location.replace('login.html');
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      })();
+    </script>
+    <!-- stylesheet links -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- bootstrap links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- fonts links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="all-content">
+   
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" id="logo"><img src="./images/logo.png" alt="Coffee Cafe"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fa-solid fa-bars" style="color: white; font-size: 23px;"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#recommender">
+              AI Recommender <span class="badge-ai ms-1"><i class="fa-solid fa-wand-magic-sparkles"></i> AI</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#product">Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tracker">
+              Track Order <span class="badge-live-pulse ms-1"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#rewards">
+              Bean Rewards <i class="fa-solid fa-crown ms-1" style="color: #ffeaa7; font-size: 0.8rem;"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gallary">Gallary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <button class="nav-barista-btn" id="navBaristaLaunchBtn" type="button">
+            <i class="fa-solid fa-robot"></i> Ask Barista AI
+          </button>
+          <a href="checkout.html" class="nav-cart-btn" id="navCartBtn" title="View Cart & Checkout">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="nav-cart-count-badge" id="navCartCount">2</span>
+          </a>
+          <div id="navUserAuthSlot">
+            <a href="login.html" class="nav-login-btn">
+              <i class="fa-solid fa-user"></i> Sign In
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar -->
+
+  <!-- home section -->
+  <section id="home">
+    <div class="content">
+      <h3>Start Your Day With a <br> Fresh Coffee</h3>
+      <p>Where the aroma of fresh coffee meets cutting-edge artisan craft.
+        <br> Welcome to the future of cafe indulgence.
+        <br>"𝘾𝙤𝙛𝙛𝙚𝙚 𝘾𝙖𝙛𝙚"
+      </p>
+      
+      <!-- Hero action buttons -->
+      <div class="hero-buttons-group">
+        <button id="btn">Explore Menu</button>
+        <a href="#recommender" class="hero-secondary-btn">
+          <i class="fa-solid fa-brain"></i> AI Coffee Matchmaker
+        </a>
+        <a href="#tracker" class="hero-secondary-btn">
+          <i class="fa-solid fa-truck-fast"></i> Live Brew Tracker
+        </a>
+        <a href="checkout.html" class="hero-secondary-btn">
+          <i class="fa-solid fa-credit-card"></i> Checkout Cart
+        </a>
+      </div>
+
+      <!-- Feature highlight ribbon -->
+      <div class="hero-features-ribbon row g-3 mt-4">
+        <div class="col-md-3 col-6">
+          <a href="javascript:void(0)" class="hero-ribbon-item" onclick="document.getElementById('baristaChatToggle').click()">
+            <div class="hero-ribbon-icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="hero-ribbon-text">
+              <h6>Virtual Barista</h6>
+              <span>24/7 AI Sommelier</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="#recommender" class="hero-ribbon-item">
+            <div class="hero-ribbon-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="hero-ribbon-text">
+              <h6>ML Engine</h6>
+              <span>Taste Vector Match</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="#tracker" class="hero-ribbon-item">
+            <div class="hero-ribbon-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="hero-ribbon-text">
+              <h6>Live Order Tracker</h6>
+              <span>Real-Time 93°C Stepper</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="#rewards" class="hero-ribbon-item">
+            <div class="hero-ribbon-icon"><i class="fa-solid fa-award"></i></div>
+            <div class="hero-ribbon-text">
+              <h6>Bean Club Rewards</h6>
+              <span>Earn Free Coffee</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- home section -->
+
+  <!-- about section -->
+  <div class="about" id="about">
+    <div class="container">
+      <div class="heading">About <span>Us</span></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <img src="./images/about.png" alt="About Coffee Cafe">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3>What Makes Our Coffee Special?</h3>
+          <p><br>"Brewed to perfection, our coffee is rich, smooth, and full of flavor-crafted to make every sip the best part of your day."
+            <br><br>"Our coffee is made from high-quality, freshly roasted beans, brewed to perfection for a rich and smooth flavor in every cup. Powered by intelligent taste matching and live barista tracking, we ensure your daily cup is tailored precisely to your palate."
+            <br><br>A smooth and creamy blend of rich espresso and steamed milk, finished with a light layer of micro-foam. Perfectly balanced and comforting—your go-to cup for warmth and relaxation.
+          </p>
+          <a href="#menu"><button id="about-btn">Discover Our Menu</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- about section -->
+
+  <!-- top cards -->
+  <section class="top-cards">
+    <div class="heading2">Top <span>Categories</span></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/c1.png" alt="Category 1">
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/c2.png" alt="Category 2">
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/c3.png" alt="Category 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- top cards -->
+
+  <!-- =========================================================================
+       NEW FEATURE 1: MACHINE LEARNING RECOMMENDATION ENGINE
+       ========================================================================= -->
+  <section id="recommender" class="feature-section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-badge-pill">
+          <i class="fa-solid fa-microchip"></i> Machine Learning Algorithm
+        </div>
+        <h2 class="section-main-heading">Personalized <span>AI Recommendation Engine</span></h2>
+        <p class="section-subtitle-text">
+          Select your flavor cravings, caffeine intensity, and daily vibe. Our statistical cosine matching engine computes your optimal roast match in real-time.
+        </p>
+      </div>
+
+      <div class="ai-engine-container">
+        <div class="row g-4">
+          <!-- Left Column: Preference Selector Matrix -->
+          <div class="col-lg-7">
+            <h4 style="font-weight: 800; color: #1f130b; margin-bottom: 20px;">
+              <i class="fa-solid fa-sliders" style="color: #b2744c;"></i> Calibrate Your Taste Profile
+            </h4>
+
+            <!-- 1. Flavor Notes -->
+            <div class="ml-param-group">
+              <div class="ml-param-label">
+                <span>1. Desired Flavor Notes</span>
+                <span class="info-tag"><i class="fa-solid fa-sparkles"></i> High Accuracy Weight</span>
+              </div>
+              <div class="flavor-chips-grid">
+                <div class="flavor-chip" data-flavor="bold-smoky">
+                  <i class="fa-solid fa-fire"></i> Bold & Smoky
+                </div>
+                <div class="flavor-chip active" data-flavor="sweet-nutty">
+                  <i class="fa-solid fa-cookie"></i> Sweet & Nutty
+                </div>
+                <div class="flavor-chip" data-flavor="caramel-creamy">
+                  <i class="fa-solid fa-cloud"></i> Caramel & Creamy
+                </div>
+                <div class="flavor-chip" data-flavor="citrus-berry">
+                  <i class="fa-solid fa-lemon"></i> Bright Citrus
+                </div>
+                <div class="flavor-chip" data-flavor="dark-espresso">
+                  <i class="fa-solid fa-bolt"></i> Pure Dark Roast
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Temperature Preference -->
+            <div class="ml-param-group">
+              <div class="ml-param-label">
+                <span>2. Brew Temperature</span>
+              </div>
+              <div class="temp-pills-row">
+                <div class="temp-pill active" data-temp="Hot">
+                  <i class="fa-solid fa-mug-hot"></i> Steaming Hot
+                </div>
+                <div class="temp-pill" data-temp="Iced">
+                  <i class="fa-solid fa-snowflake"></i> Chilled On Ice
+                </div>
+                <div class="temp-pill" data-temp="Blended">
+                  <i class="fa-solid fa-blender"></i> Blended Frappé
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Caffeine Level Slider -->
+            <div class="ml-param-group">
+              <div class="ml-param-label">
+                <span>3. Caffeine Target</span>
+                <span id="caffeineValLabel" style="color: #b2744c; font-weight: 800;">Balanced Boost (~120mg)</span>
+              </div>
+              <div class="caffeine-range-container">
+                <input type="range" class="custom-coffee-slider" id="caffeineRangeInput" min="1" max="5" value="3" step="1">
+                <div class="caffeine-meter-labels">
+                  <span>🌿 Decaf (0-20mg)</span>
+                  <span>☕ Moderate</span>
+                  <span>⚡ Turbo Boost (240mg+)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Mood / Time of Day & Milk Base -->
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ml-param-group">
+                  <div class="ml-param-label"><span>4. Current Vibe</span></div>
+                  <select class="form-select" id="recMoodSelect" style="border-radius: 10px; font-weight: 600;">
+                    <option value="Morning Awakening" selected>☀️ Morning Awakening</option>
+                    <option value="Deep Work Focus">💻 Deep Work Focus</option>
+                    <option value="Afternoon Pick-me-up">⚡ Afternoon Pick-me-up</option>
+                    <option value="Cozy Evening Relaxation">🛋️ Cozy Evening Relaxation</option>
+                    <option value="Social Meetup">☕ Casual Social Meetup</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ml-param-group">
+                  <div class="ml-param-label"><span>5. Milk & Dietary Base</span></div>
+                  <select class="form-select" id="recMilkSelect" style="border-radius: 10px; font-weight: 600;">
+                    <option value="Oat Milk" selected>🌾 Barista Oat Milk (Vegan)</option>
+                    <option value="Whole Cream">🥛 Classic Whole Milk</option>
+                    <option value="Almond Milk">🌰 Roasted Almond Milk</option>
+                    <option value="Pure Espresso">☕ Pure Espresso / No Milk</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action button -->
+            <button class="btn-run-ml mt-3" id="btnRunAiRecommender" type="button">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Run AI Match Engine
+            </button>
+          </div>
+
+          <!-- Right Column: Computed ML Match Output -->
+          <div class="col-lg-5">
+            <div class="ai-result-panel">
+              <div class="ai-match-badge-float">
+                <i class="fa-solid fa-circle-check text-success"></i>
+                <span id="recMatchBadgeVal" class="score-val">98.4% Match</span>
+              </div>
+
+              <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #b2744c; font-weight: 800;">
+                <i class="fa-solid fa-microchip"></i> Top Neural Match
+              </div>
+
+              <!-- Recommendation hero info -->
+              <div class="ai-recommendation-hero">
+                <div class="ai-rec-image-box">
+                  <img src="./images/m4.png" id="recResultImg" alt="Recommended Drink">
+                </div>
+                <div class="ai-rec-details">
+                  <h4 id="recResultTitle">Hazelnut Coffee</h4>
+                  <div class="ai-rec-price-tag" id="recResultPrice">₹159 <strike>₹189</strike></div>
+                  <div class="star mt-1">
+                    <i class="fa-solid fa-star" style="color: #b2744c; font-size: 0.8rem;"></i>
+                    <i class="fa-solid fa-star" style="color: #b2744c; font-size: 0.8rem;"></i>
+                    <i class="fa-solid fa-star" style="color: #b2744c; font-size: 0.8rem;"></i>
+                    <i class="fa-solid fa-star" style="color: #b2744c; font-size: 0.8rem;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: #b2744c; font-size: 0.8rem;"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dimension Match Meters -->
+              <div class="ml-dimension-bar-item">
+                <div class="ml-dimension-label">
+                  <span>Roast Profile Intensity</span>
+                  <span>Medium Dark</span>
+                </div>
+                <div class="ml-progress-track">
+                  <div class="ml-progress-fill" id="recRoastFill" style="width: 60%;"></div>
+                </div>
+              </div>
+
+              <div class="ml-dimension-bar-item">
+                <div class="ml-dimension-label">
+                  <span>Sweetness & Silky Body</span>
+                  <span>Balanced</span>
+                </div>
+                <div class="ml-progress-track">
+                  <div class="ml-progress-fill" id="recSweetnessFill" style="width: 80%;"></div>
+                </div>
+              </div>
+
+              <div class="ml-dimension-bar-item">
+                <div class="ml-dimension-label">
+                  <span>Caffeine Energy Boost</span>
+                  <span>Optimal (~130mg)</span>
+                </div>
+                <div class="ml-progress-track">
+                  <div class="ml-progress-fill" id="recCaffeineFill" style="width: 60%;"></div>
+                </div>
+              </div>
+
+              <!-- Barista AI Reasoning Quote -->
+              <div class="ai-reasoning-quote" id="recReasoningQuote">
+                <strong>✨ Barista AI Insight:</strong> We calibrated this recipe for your Morning Awakening vibe. Its Toasted Hazelnut, Caramel Swirl notes pair seamlessly with your Oat Milk preference!
+              </div>
+
+              <!-- Action buttons in card -->
+              <div class="d-flex gap-2 mt-auto">
+                <button class="btn btn-dark w-75 py-2 fw-bold" id="btnOrderMlRecommendation">
+                  <i class="fa-solid fa-cart-shopping me-1"></i> Quick Order & Track
+                </button>
+                <button class="btn btn-outline-secondary w-25 py-2 fw-bold" id="btnSurpriseMe" title="Surprise Me with Random Top Roast">
+                  <i class="fa-solid fa-dice"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Collaborative filtering: Frequently Paired Together -->
+        <div class="collaborative-picks-section">
+          <h5 style="font-weight: 800; color: #1f130b; margin-bottom: 18px;">
+            <i class="fa-solid fa-users" style="color: #b2744c;"></i> Collaborative Filtering: Customers With Similar Palates Loved
+          </h5>
+          <div class="row" id="collaborativePicksGrid">
+            <!-- Dynamically populated via app.js -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- recommendation engine -->
+
+  <!-- menu -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="heading3">Artisan Menu</div>
+    </div>
+    <div class="container" id="container2">
+      <div class="row">
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m1.png" alt="Bru Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Bru Coffee</h3>
+              <p>₹60 <strike>₹120</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m2.png" alt="Latte Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Latte Coffee</h3>
+              <p>₹90 <strike>₹150</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m3.png" alt="Cappuccino Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Cappuccino Coffee</h3>
+              <p>₹130 <strike>₹160</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m4.png" alt="Hazelnut Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Hazelnut Coffee</h3>
+              <p>₹159 <strike>₹189</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m5.png" alt="Foam Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Foam Coffee</h3>
+              <p>₹220 <strike>₹250</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m6.png" alt="Black Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Black Coffee</h3>
+              <p>₹300 <strike>₹370</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m7.png" alt="Americano Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Americano Coffee</h3>
+              <p>₹400 <strike>₹500</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/m8.png" alt="Espresso Coffee">
+            <div class="card-body">
+              <div class="star text-center">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h3>Espresso Coffee</h3>
+              <p>₹549 <strike>₹650</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- menu -->
+
+  <!-- product -->
+  <section id="product" class="product">
+    <div class="container">
+      <div class="heading4">Roasted Whole Bean Products</div>
+    </div>
+    <div class="container" id="container3">
+      <div class="row">
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/arabica coffee.png" alt="Arabic Coffee Beans">
+            <div class="card-body">
+              <h3>Arabic Coffee</h3>
+              <p>₹1899 <strike>₹2000</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/Cappuccino coffee.png" alt="Cappuccino Blend Beans">
+            <div class="card-body">
+              <h3>Cappuccino Coffee</h3>
+              <p>₹990 <strike>₹1100</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/Black Coffee.png" alt="Black Coffee Beans">
+            <div class="card-body">
+              <h3>Black Coffee</h3>
+              <p>₹1285 <strike>₹1399</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+          <div class="card">
+            <img src="./images/Decaf caffee.png" alt="Decaf Coffee Beans">
+            <div class="card-body">
+              <h3>Decaf Coffee</h3>
+              <p>₹1600 <strike>₹1800</strike> <span><i class="fa-solid fa-cart-shopping" title="Order Now & Track Live"></i></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- product -->
+
+  <!-- =========================================================================
+       NEW FEATURE 2: REAL-TIME ORDER TRACKING SYSTEM
+       ========================================================================= -->
+  <section id="tracker" class="feature-section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-badge-pill">
+          <span class="badge-live-pulse me-1"></span> Live Brew Transparency
+        </div>
+        <h2 class="section-main-heading">Real-Time <span>Order Tracking</span></h2>
+        <p class="section-subtitle-text">
+          Watch your handcrafted coffee progress live — from single-origin bean grinding to 93°C extraction and milk froth perfection.
+        </p>
+      </div>
+
+      <div class="order-tracker-card">
+        <!-- Search & Control Header -->
+        <div class="order-lookup-bar">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-receipt text-muted"></i>
+            <span style="font-weight: 700; font-size: 0.9rem; color: #1f130b;">Tracking Order:</span>
+          </div>
+          <input type="text" class="order-lookup-input" id="orderSearchInput" placeholder="Enter Order ID (e.g. #CC-8421)" value="#CC-8421">
+          <button class="btn-track-action" type="button" onclick="window.lookupOrderById()">
+            <i class="fa-solid fa-magnifying-glass me-1"></i> Track
+          </button>
+          <button class="btn-demo-order" type="button" onclick="window.quickOrderDrink('Hazelnut Coffee with Oat Milk', 159)">
+            <i class="fa-solid fa-mug-hot"></i> Simulate New Order
+          </button>
+          <button class="btn btn-outline-dark btn-sm ms-auto py-2 px-3 fw-bold" type="button" onclick="window.advanceOrderStepDemo()">
+            <i class="fa-solid fa-forward-step me-1"></i> Next Step
+          </button>
+        </div>
+
+        <!-- Visual 4-Step Animated Stepper -->
+        <div class="stepper-progress-wrapper">
+          <div class="stepper-track-bg">
+            <div class="stepper-track-fill" id="stepperProgressFill" style="width: 38%;"></div>
+          </div>
+          <div class="stepper-steps-grid">
+            <!-- Step 1 -->
+            <div class="step-node completed" id="stepNode1">
+              <div class="step-circle"><i class="fa-solid fa-clipboard-check"></i></div>
+              <div class="step-label">1. Confirmed</div>
+              <div class="step-desc">Beans Selected</div>
+            </div>
+            <!-- Step 2 -->
+            <div class="step-node active" id="stepNode2">
+              <div class="step-circle"><i class="fa-solid fa-gears"></i></div>
+              <div class="step-label">2. Grinding & 93°C</div>
+              <div class="step-desc">Espresso Extraction</div>
+            </div>
+            <!-- Step 3 -->
+            <div class="step-node" id="stepNode3">
+              <div class="step-circle"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <div class="step-label">3. Frothing</div>
+              <div class="step-desc">Latte Art Handcraft</div>
+            </div>
+            <!-- Step 4 -->
+            <div class="step-node" id="stepNode4">
+              <div class="step-circle"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="step-label">4. Ready!</div>
+              <div class="step-desc">At Pickup Counter</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order details and activity feed -->
+        <div class="order-details-grid">
+          <!-- Left: Live Activity Feed -->
+          <div class="order-feed-card">
+            <div class="feed-header">
+              <div>
+                <h5 style="margin: 0; font-weight: 800; color: #1f130b;">
+                  <span id="trackerOrderId" style="color: #b2744c;">#CC-8421</span>
+                </h5>
+                <span id="trackerDrinkTitle" style="font-weight: 700; color: #555;">Hazelnut Coffee with Oat Milk</span>
+              </div>
+              <div style="text-align: right;">
+                <span class="badge bg-success py-2 px-3 fw-bold" style="font-size: 0.85rem;">Live Brewing</span>
+                <div id="trackerDrinkPrice" style="font-weight: 800; font-size: 1.1rem; color: #1f130b; margin-top: 4px;">₹159</div>
+              </div>
+            </div>
+
+            <ul class="feed-timeline" id="trackerEventsList">
+              <li>
+                <span class="feed-time">15:01</span>
+                Order received & queued in barista ticket terminal
+              </li>
+              <li class="latest">
+                <span class="feed-time">15:02</span>
+                Single-origin beans ground & calibrated to 93°C pressure
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Barista & ETA Countdown -->
+          <div class="barista-eta-box">
+            <div class="eta-countdown-display">
+              <div class="eta-number" id="trackerEtaDisplay">3m 40s</div>
+              <div class="eta-label">Estimated Preparation Time</div>
+            </div>
+
+            <div class="barista-avatar-row">
+              <div class="barista-avatar-img">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <div class="barista-info-text">
+                <h6>Barista Arjun</h6>
+                <span>Master Roaster • 5.0 ★ Rated</span>
+              </div>
+              <button class="btn btn-sm btn-outline-light ms-auto py-1 px-3 fw-bold" onclick="document.getElementById('baristaChatToggle').click()">
+                <i class="fa-solid fa-message me-1"></i> Ask Bella
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- real-time order tracking -->
+
+  <!-- =========================================================================
+       NEW FEATURE 3: LOYALTY REWARDS & BEAN CLUB SYSTEM
+       ========================================================================= -->
+  <section id="rewards" class="feature-section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-badge-pill">
+          <i class="fa-solid fa-crown text-warning"></i> VIP Membership Club
+        </div>
+        <h2 class="section-main-heading">Coffee Cafe <span>Bean Club & Rewards</span></h2>
+        <p class="section-subtitle-text">
+          Earn Bean Points with every purchase. Collect digital stamps and redeem artisanal coffees, freshly baked croissants, and premium roast bags.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Left: VIP Digital Member Card -->
+        <div class="col-lg-6">
+          <div class="loyalty-pass-card">
+            <div class="pass-header">
+              <div>
+                <span style="font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: #d6c4b6;">Digital Cafe Pass</span>
+                <h5 style="margin: 0; font-weight: 800; color: #ffffff;" id="loyaltyMemberName">Coffee Enthusiast VIP</h5>
+              </div>
+              <div class="pass-tier-badge" id="loyaltyTierBadge">
+                <i class="fa-solid fa-crown"></i> Gold Barista 🥇
+              </div>
+            </div>
+
+            <div class="pass-points-counter">
+              <div class="points-big-num">
+                <span id="loyaltyPointsDisplay">450</span>
+                <span class="unit">Bean Points</span>
+              </div>
+              <div class="pass-tier-track">
+                <div class="pass-tier-fill" id="loyaltyTierProgressFill" style="width: 75%;"></div>
+              </div>
+              <div style="font-size: 0.8rem; color: #e5a65d; font-weight: 600;" id="loyaltyTierMetaText">
+                150 more Beans to reach Platinum Diamond Tier
+              </div>
+            </div>
+
+            <div class="pass-footer-meta">
+              <span>Card ID: <strong>#CC-VIP-9942</strong></span>
+              <span>1.5x Multiplier Active</span>
+              <span class="badge bg-warning text-dark fw-bold">Active Member</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Digital Stamp Card (Buy 5 Get 6th Free) -->
+        <div class="col-lg-6">
+          <div class="digital-stamp-card">
+            <div>
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 style="margin: 0; font-weight: 800; color: #1f130b;">
+                  <i class="fa-solid fa-stamp" style="color: #b2744c;"></i> Digital Stamp Card
+                </h5>
+                <span class="badge bg-secondary py-1 px-2">Buy 5, Get 6th Free!</span>
+              </div>
+              <p style="font-size: 0.85rem; color: #777; margin-top: 4px;">
+                Collect stamps on every hot or iced handcrafted brew. The 6th drink is 100% on the house!
+              </p>
+
+              <!-- 6 Stamps Grid -->
+              <div class="stamp-slots-row">
+                <div class="stamp-slot stamped">
+                  <i class="fa-solid fa-mug-hot"></i>
+                  <span class="stamp-slot-num">1</span>
+                </div>
+                <div class="stamp-slot stamped">
+                  <i class="fa-solid fa-mug-hot"></i>
+                  <span class="stamp-slot-num">2</span>
+                </div>
+                <div class="stamp-slot stamped">
+                  <i class="fa-solid fa-mug-hot"></i>
+                  <span class="stamp-slot-num">3</span>
+                </div>
+                <div class="stamp-slot stamped">
+                  <i class="fa-solid fa-mug-hot"></i>
+                  <span class="stamp-slot-num">4</span>
+                </div>
+                <div class="stamp-slot">
+                  <i class="fa-regular fa-circle-dot"></i>
+                  <span class="stamp-slot-num">5</span>
+                </div>
+                <div class="stamp-slot free-reward-slot">
+                  <i class="fa-solid fa-gift"></i>
+                  <span class="stamp-slot-num">FREE</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="stamp-actions-row">
+              <button class="btn-add-stamp" type="button" onclick="window.addManualStamp()">
+                <i class="fa-solid fa-plus me-1"></i> Add Coffee Stamp
+              </button>
+              <button class="btn-daily-bonus ms-auto" id="btnDailyBonus" type="button" onclick="window.claimDailyBonus()">
+                <i class="fa-solid fa-gift"></i> Claim Daily +50 Beans
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rewards Store Catalog -->
+      <div class="rewards-store-grid">
+        <!-- Reward 1 -->
+        <div class="reward-item-card">
+          <div>
+            <div class="reward-item-header">
+              <div class="reward-icon-circle"><i class="fa-solid fa-fire-flame-curved"></i></div>
+              <div>
+                <h6 class="reward-item-title">Extra Espresso Shot</h6>
+                <span class="reward-cost-tag">100 Beans</span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: #666; margin: 0;">Add an artisanal shot of 9-bar espresso to any beverage.</p>
+          </div>
+          <button class="btn-redeem-item" onclick="window.redeemRewardItem('Extra Espresso Shot', 100)">
+            Redeem Reward
+          </button>
+        </div>
+
+        <!-- Reward 2 -->
+        <div class="reward-item-card">
+          <div>
+            <div class="reward-item-header">
+              <div class="reward-icon-circle"><i class="fa-solid fa-bread-slice"></i></div>
+              <div>
+                <h6 class="reward-item-title">Butter Croissant</h6>
+                <span class="reward-cost-tag">250 Beans</span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: #666; margin: 0;">Flaky golden French pastry baked fresh daily in our kitchen.</p>
+          </div>
+          <button class="btn-redeem-item" onclick="window.redeemRewardItem('Butter Croissant', 250)">
+            Redeem Reward
+          </button>
+        </div>
+
+        <!-- Reward 3 -->
+        <div class="reward-item-card">
+          <div>
+            <div class="reward-item-header">
+              <div class="reward-icon-circle"><i class="fa-solid fa-mug-saucer"></i></div>
+              <div>
+                <h6 class="reward-item-title">Any Signature Latte</h6>
+                <span class="reward-cost-tag">400 Beans</span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: #666; margin: 0;">Enjoy any handcrafted hot or iced latte completely complimentary.</p>
+          </div>
+          <button class="btn-redeem-item" onclick="window.redeemRewardItem('Any Signature Latte', 400)">
+            Redeem Reward
+          </button>
+        </div>
+
+        <!-- Reward 4 -->
+        <div class="reward-item-card">
+          <div>
+            <div class="reward-item-header">
+              <div class="reward-icon-circle"><i class="fa-solid fa-box-open"></i></div>
+              <div>
+                <h6 class="reward-item-title">250g Arabica Roast Bag</h6>
+                <span class="reward-cost-tag">750 Beans</span>
+              </div>
+            </div>
+            <p style="font-size: 0.82rem; color: #666; margin: 0;">Whole-bean bag roasted in small artisan batches for home brewers.</p>
+          </div>
+          <button class="btn-redeem-item" onclick="window.redeemRewardItem('250g Arabica Roast Bag', 750)">
+            Redeem Reward
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- loyalty rewards -->
+
+  <!-- our gallary -->
+  <div class="container" id="gallary">
+    <h1>Our <span>Gallary</span></h1>
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="card">
+          <img src="./images/image1.png" alt="Gallery 1">
+        </div>
+      </div>
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="card">
+          <img src="./images/image2.png" alt="Gallery 2">
+        </div>
+      </div>
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="card">
+          <img src="./images/image3.png" alt="Gallery 3">
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="card">
+          <img src="./images/image4.png" alt="Gallery 4">
+        </div>
+      </div>
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="card">
+          <img src="./images/image5.png" alt="Gallery 5">
+        </div>
+      </div>
+      <div class="col-md-4 py-3 py-md-0">
+        <div class="card">
+          <img src="./images/image6.png" alt="Gallery 6">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- our gallary -->
+
+  <!-- contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="heading6">Contact <span>Us</span></div>
+          <p>If Any Query about our Products & Services.
+            <br><br>Fill It 👇.
+          </p>
+          <input class="form-control" type="text" placeholder="Name" aria-label="default input example"><br>
+          <input class="form-control" type="email" placeholder="Email" aria-label="default input example"><br>
+          <input class="form-control" type="number" placeholder="Number" aria-label="default input example"><br>
+          <button id="contact-btn">Send Message</button>
+        </div>
+        <div class="col-md-5" id="col">
+          <h1>Info</h1>
+          <p><i class="fa-regular fa-envelope"></i> coffeecafe001@gmail.com</p>
+          <p><i class="fa-solid fa-phone"></i> +917276031988</p>
+          <p><i class="fa-solid fa-building-columns"></i> Buti-bori ,Nagpur ,Maharashtra</p>
+          <p>Metro city mall, ground floor, Opposite SBI</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- contact -->
+
+  <!-- footer -->
+  <footer id="footer">
+    <div class="footer-logo text-center"><img src="./images/logo.png" alt="Coffee Cafe"></div>
+    <div class="socail-links text-center">
+      <i class="fa-brands fa-twitter"></i>
+      <i class="fa-brands fa-facebook-f"></i>
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-youtube"></i>
+      <i class="fa-brands fa-pinterest-p"></i>
+    </div>
+    <div class="credite text-center">
+      Designed By <a href="#">Hitesh&Avinash</a>
+    </div>
+    <div class="copyright text-center">
+      &copy; Copyright <strong><span>𝘾𝙤𝙛𝙛𝙚𝙚 𝘾𝙖𝙛𝙚</span></strong>. All Rights Reserved
+    </div>
+  </footer>
+  <!-- footer -->
+
+  <a href="#" class="arrow"><i><img src="./images/up-arrow.png" alt="Up Arrow" width="50px"></i></a>
+
+  <!-- =========================================================================
+       NEW FEATURE 4: VIRTUAL BARISTA AI CHATBOT ("BARISTA BELLA")
+       ========================================================================= -->
+  <!-- Floating Widget Button -->
+  <div class="barista-chat-widget-toggle" id="baristaChatToggle" title="Chat with Barista Bella AI">
+    <i class="fa-solid fa-robot"></i>
+    <div class="chat-bubble-ping">1</div>
+  </div>
+
+  <!-- Expandable Chatbot Window -->
+  <div class="barista-chat-window" id="baristaChatWindow">
+    <!-- Header -->
+    <div class="chat-window-header">
+      <div class="chat-header-barista">
+        <div class="barista-avatar-chat">
+          <i class="fa-solid fa-mug-hot"></i>
+        </div>
+        <div class="chat-barista-title">
+          <h5>Barista Bella ✨</h5>
+          <span><i class="fa-solid fa-circle" style="font-size: 0.55rem; color: #2ecc71;"></i> AI Sommelier & Support</span>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-header-btn" id="btnChatReset" title="Restart Conversation">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+        <button class="chat-header-btn" id="btnChatClose" title="Minimize Chat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="chat-messages-body" id="chatMessagesBody">
+      <div class="chat-msg-row bot">
+        <div class="chat-bubble">
+          Hello! ☕ I'm <strong>Barista Bella</strong>, your virtual coffee companion. Whether you're seeking a customized flavor match, live order tracking, or loyalty rewards advice, I'm here to brew perfection for you!
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Prompt Suggestions Chips -->
+    <div class="chat-chips-tray">
+      <button class="quick-chip-btn" data-prompt="Recommend something sweet and creamy">
+        🍰 Sweet & Creamy
+      </button>
+      <button class="quick-chip-btn" data-prompt="Where is my order?">
+        📦 Track My Order
+      </button>
+      <button class="quick-chip-btn" data-prompt="How many Bean Points do I have?">
+        💎 Check My Points
+      </button>
+      <button class="quick-chip-btn" data-prompt="What are your vegan oat milk options?">
+        🌱 Vegan / Oat Milk
+      </button>
+      <button class="quick-chip-btn" data-prompt="Give me high caffeine boost">
+        ⚡ Maximum Caffeine
+      </button>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="chat-input-bar">
+      <input type="text" class="chat-input-field" id="baristaChatInput" placeholder="Ask Bella about coffee, order status, or beans...">
+      <button class="chat-send-btn" id="btnChatSend" type="button" title="Send Message">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+  <!-- chatbot widget -->
+
+  <!-- Voucher Redeem Modal -->
+  <div class="modal fade" id="voucherRedeemModal" tabindex="-1" aria-labelledby="voucherModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 20px; border: 2px solid #ecd9c6; overflow: hidden;">
+        <div class="modal-header" style="background: #2b180d; color: white;">
+          <h5 class="modal-title" id="voucherModalTitle"><i class="fa-solid fa-gift text-warning me-2"></i> Reward Voucher Unlocked!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body voucher-modal-card">
+          <div class="qr-code-placeholder">
+            <i class="fa-solid fa-qrcode" style="font-size: 5rem; color: #2b180d;"></i>
+          </div>
+          <h5 id="voucherModalItemTitle" style="font-weight: 800; color: #2b180d;">Any Signature Latte</h5>
+          <p style="font-size: 0.85rem; color: #777;">Present this digital voucher code to the barista at the checkout counter.</p>
+          <div class="voucher-code-pill" id="voucherModalCode">CAFE-GOLD-94</div>
+          <div style="font-size: 0.78rem; color: #888;">Valid for 30 days • Single-use only</div>
+        </div>
+        <div class="modal-footer" style="background: #faf7f4;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark fw-bold" onclick="navigator.clipboard.writeText(document.getElementById('voucherModalCode').textContent); window.showCafeToast('Voucher code copied to clipboard! 📋');">
+            <i class="fa-solid fa-copy me-1"></i> Copy Code
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div> <!-- .all-content -->
+
+  <!-- JavaScript links -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

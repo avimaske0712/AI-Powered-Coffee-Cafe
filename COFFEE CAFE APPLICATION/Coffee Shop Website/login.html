@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In & Bean Club Membership - Coffee Cafe ☕</title>
+    <!-- stylesheet links -->
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- bootstrap links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- fonts links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+
+  <!-- Top bar -->
+  <div class="auth-top-nav">
+    <a href="index.html?guest=1" class="btn-back-home" onclick="sessionStorage.setItem('cafe_guest_mode', '1');">
+      <i class="fa-solid fa-mug-hot"></i> Explore Cafe as Guest
+    </a>
+    <div style="font-weight: 800; color: #1f130b; font-size: 0.95rem; letter-spacing: 0.5px;">
+      ☕ 𝘾𝙤𝙛𝙛𝙚𝙚 𝘾𝙖𝙛𝙚
+    </div>
+  </div>
+
+  <!-- Master Auth Card -->
+  <div class="auth-master-card">
+    
+    <!-- Left Showcase Panel -->
+    <div class="auth-showcase-panel">
+      <div>
+        <div class="showcase-brand-row">
+          <img src="./images/logo.png" alt="Coffee Cafe Logo">
+        </div>
+        <h2 class="showcase-heading">Crafted For True <br><span>Coffee Lovers</span></h2>
+        <p class="showcase-desc">
+          Sign in to access your VIP Bean Points, track live artisan brews at 93°C, and unlock AI taste recommendations.
+        </p>
+
+        <!-- Perks List -->
+        <ul class="showcase-perks-list">
+          <li class="showcase-perk-item">
+            <div class="showcase-perk-icon"><i class="fa-solid fa-gift"></i></div>
+            <div class="showcase-perk-text">
+              <h6>100 Free Welcome Beans</h6>
+              <p>Credited immediately upon creating your member account</p>
+            </div>
+          </li>
+          <li class="showcase-perk-item">
+            <div class="showcase-perk-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="showcase-perk-text">
+              <h6>Live 93°C Order Stepper</h6>
+              <p>Watch grinding, espresso extraction & latte art in real-time</p>
+            </div>
+          </li>
+          <li class="showcase-perk-item">
+            <div class="showcase-perk-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="showcase-perk-text">
+              <h6>AI Taste Recommender</h6>
+              <p>Personalized flavor vectors tuned to your daily mood</p>
+            </div>
+          </li>
+          <li class="showcase-perk-item">
+            <div class="showcase-perk-icon"><i class="fa-solid fa-crown"></i></div>
+            <div class="showcase-perk-text">
+              <h6>VIP Tier Multipliers</h6>
+              <p>Earn up to 1.5x beans & free handcrafted monthly brews</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Testimonial quote -->
+      <div class="showcase-quote-box">
+        "Coffee Cafe's AI Barista Bella suggested the hazelnut oat latte — easily the best coffee experience of my morning!"
+        <div class="quote-author">
+          <i class="fa-solid fa-circle-check"></i> Alex Vance • VIP Gold Member
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Form Panel -->
+    <div class="auth-form-panel">
+
+      <!-- State: Already Signed In View (Hidden by default unless logged in) -->
+      <div id="alreadyLoggedInState" style="display: none;" class="auth-logged-in-box">
+        <div class="auth-user-avatar-circle">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <h3 style="font-weight: 800; color: #1f130b; margin-bottom: 6px;">
+          Welcome Back, <span id="loggedInUserName">Alex</span>!
+        </h3>
+        <p style="color: #777; font-size: 0.9rem; margin-bottom: 20px;">
+          You are currently signed into your Coffee Cafe VIP account.
+        </p>
+
+        <div style="background: #fdf6ee; border: 1px solid #ebd9cb; border-radius: 14px; padding: 15px; margin-bottom: 25px; text-align: left;">
+          <div class="d-flex justify-content-between mb-2">
+            <span style="font-size: 0.82rem; color: #888;">Account Email:</span>
+            <strong style="font-size: 0.85rem; color: #1f130b;" id="loggedInUserEmail">alex@coffeecafe.com</strong>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span style="font-size: 0.82rem; color: #888;">Membership Status:</span>
+            <span class="badge bg-warning text-dark" id="loggedInUserTier">Gold Barista 🥇</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span style="font-size: 0.82rem; color: #888;">Bean Balance:</span>
+            <strong style="color: #b2744c; font-size: 0.95rem;" id="loggedInUserBeans">450 Beans ☕</strong>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <a href="index.html" class="btn btn-dark py-3 fw-bold" style="border-radius: 12px;">
+            <i class="fa-solid fa-house me-2"></i> Return to Cafe Home
+          </a>
+          <button type="button" class="btn btn-outline-danger py-2 fw-bold" style="border-radius: 12px;" onclick="window.AuthManager.logout()">
+            <i class="fa-solid fa-right-from-bracket me-2"></i> Sign Out of Account
+          </button>
+        </div>
+      </div>
+
+      <!-- State: Authentication Forms (Sign In & Sign Up) -->
+      <div id="authFormsContainer">
+
+        <!-- Quick Demo Account Callout -->
+        <div class="demo-account-callout">
+          <div class="demo-account-text">
+            <i class="fa-solid fa-bolt text-warning me-1"></i>
+            <strong>Quick Test?</strong> Sign in as Demo VIP (Alex Vance) with 1 click:
+          </div>
+          <button type="button" class="btn-quick-demo" id="btnQuickDemoLogin">
+            <i class="fa-solid fa-mug-hot"></i> Demo Login
+          </button>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="auth-tabs-row">
+          <button type="button" class="auth-tab-btn active" id="tabSignInBtn">
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Sign In
+          </button>
+          <button type="button" class="auth-tab-btn" id="tabSignUpBtn">
+            <i class="fa-solid fa-user-plus me-1"></i> Create Account
+          </button>
+        </div>
+
+        <!-- Error/Alert Banner -->
+        <div id="authAlertBanner" class="alert alert-danger py-2 px-3 mb-3" style="display: none; font-size: 0.88rem; border-radius: 10px;">
+          <i class="fa-solid fa-circle-exclamation me-1"></i> <span id="authAlertMessage"></span>
+        </div>
+
+        <!-- ==========================================
+             VIEW 1: SIGN IN FORM
+             ========================================== -->
+        <div class="auth-form-view active" id="signInView">
+          <h3 class="form-header-title">Welcome Back</h3>
+          <p class="form-header-subtitle">Enter your coffee credentials to access your perks.</p>
+
+          <form id="signInForm" autocomplete="on">
+            <!-- Email -->
+            <div class="custom-input-group">
+              <label class="custom-input-label" for="loginEmail">Email Address</label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-envelope field-icon"></i>
+                <input type="email" id="loginEmail" placeholder="e.g. alex@coffeecafe.com" required>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="custom-input-group">
+              <label class="custom-input-label" for="loginPassword">Password</label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-lock field-icon"></i>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                <button type="button" class="btn-password-toggle" id="btnToggleLoginPass" title="Show/Hide Password">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Options Row -->
+            <div class="form-options-row">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMeCheck" checked>
+                <label class="form-check-label" for="rememberMeCheck">Remember me</label>
+              </div>
+              <a href="javascript:void(0)" class="link-forgot-pass" id="btnForgotPassword">Forgot password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-auth-primary" id="btnSubmitLogin">
+              <span>Sign In & Brew</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <!-- Social Login Separator -->
+          <div class="social-divider">
+            <span>or continue with</span>
+          </div>
+
+          <!-- Social Buttons -->
+          <div class="social-buttons-grid">
+            <button type="button" class="btn-social-auth" onclick="simulateSocialAuth('Google')">
+              <i class="fa-brands fa-google text-danger"></i> Google
+            </button>
+            <button type="button" class="btn-social-auth" onclick="simulateSocialAuth('Apple')">
+              <i class="fa-brands fa-apple"></i> Apple ID
+            </button>
+          </div>
+
+          <div class="text-center mt-3 pt-2">
+            <a href="index.html?guest=1" style="color: #8c776b; font-size: 0.85rem; font-weight: 600; text-decoration: underline;" onclick="sessionStorage.setItem('cafe_guest_mode', '1');">
+              Skip for now & browse menu as Guest →
+            </a>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             VIEW 2: SIGN UP / REGISTRATION FORM
+             ========================================== -->
+        <div class="auth-form-view" id="signUpView">
+          <h3 class="form-header-title">Join The Bean Club</h3>
+          <p class="form-header-subtitle">
+            Get <strong>100 Free Beans</strong> + personalized recommendations today.
+          </p>
+
+          <form id="signUpForm" autocomplete="on">
+            <!-- Full Name -->
+            <div class="custom-input-group">
+              <label class="custom-input-label" for="regName">Full Name</label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-user field-icon"></i>
+                <input type="text" id="regName" placeholder="e.g. Maya Sharma" required>
+              </div>
+            </div>
+
+            <!-- Email & Phone Grid -->
+            <div class="row g-2">
+              <div class="col-md-7">
+                <div class="custom-input-group">
+                  <label class="custom-input-label" for="regEmail">Email Address</label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-envelope field-icon"></i>
+                    <input type="email" id="regEmail" placeholder="maya@gmail.com" required>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="custom-input-group">
+                  <label class="custom-input-label" for="regPhone">Phone Number</label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-phone field-icon"></i>
+                    <input type="tel" id="regPhone" placeholder="+91 9876..." required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Favorite Coffee -->
+            <div class="custom-input-group">
+              <label class="custom-input-label" for="regFavDrink">Favorite Coffee Style</label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-mug-saucer field-icon"></i>
+                <select id="regFavDrink">
+                  <option value="Hazelnut Coffee with Oat Milk">Hazelnut Coffee with Oat Milk (Bestseller)</option>
+                  <option value="Cappuccino Coffee">Classic Steamed Cappuccino</option>
+                  <option value="Artisan Black Coffee">Bold Zero-Sugar Black Coffee</option>
+                  <option value="Foam Coffee (Whipped Dalgona)">Chilled Whipped Foam Coffee</option>
+                  <option value="Espresso Doppio">Concentrated Espresso Doppio</option>
+                  <option value="Swiss Water Decaf">Swiss Water Mountain Decaf</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Password & Confirm Password -->
+            <div class="row g-2">
+              <div class="col-md-6">
+                <div class="custom-input-group">
+                  <label class="custom-input-label" for="regPassword">Password (6+ chars)</label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-lock field-icon"></i>
+                    <input type="password" id="regPassword" placeholder="Min 6 characters" required>
+                    <button type="button" class="btn-password-toggle" id="btnToggleRegPass">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="custom-input-group">
+                  <label class="custom-input-label" for="regConfirmPassword">Confirm Password</label>
+                  <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-shield-halved field-icon"></i>
+                    <input type="password" id="regConfirmPassword" placeholder="Repeat password" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Terms Checkbox -->
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
+              <label class="form-check-label" for="termsCheck" style="font-size: 0.8rem; color: #554439;">
+                I agree to the Bean Club Rewards Policy and claim my 100 Free Beans.
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-auth-primary" id="btnSubmitRegister">
+              <span>Create Account & Claim 100 Beans</span> <i class="fa-solid fa-gift"></i>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPassModal" tabindex="-1" aria-labelledby="forgotPassModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 20px; border: 2px solid #ecd9c6; overflow: hidden;">
+        <div class="modal-header" style="background: #1f130b; color: white;">
+          <h5 class="modal-title" id="forgotPassModalTitle"><i class="fa-solid fa-key text-warning me-2"></i> Reset Your Password</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p style="font-size: 0.88rem; color: #555;">
+            Enter your registered Coffee Cafe email address. We will verify your account and provide a demo password reset link.
+          </p>
+          <div class="custom-input-group mb-3">
+            <label class="custom-input-label" for="forgotEmailInput">Your Account Email</label>
+            <div class="input-icon-wrapper">
+              <i class="fa-solid fa-envelope field-icon"></i>
+              <input type="email" id="forgotEmailInput" placeholder="e.g. alex@coffeecafe.com" value="alex@coffeecafe.com">
+            </div>
+          </div>
+          <div id="forgotSuccessMessage" class="alert alert-success py-2 px-3" style="display:none; font-size: 0.85rem; border-radius: 10px;">
+            <i class="fa-solid fa-check-circle me-1"></i> Password reset link sent! Check your inbox (or use demo password: <code>coffee123</code>).
+          </div>
+        </div>
+        <div class="modal-footer" style="background: #faf7f4;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-dark fw-bold" id="btnSendPasswordReset">
+            <i class="fa-solid fa-paper-plane me-1"></i> Send Reset Link
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="cafeToastContainer" class="cafe-toast-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Authentication logic -->
+  <script src="auth.js"></script>
+
+  <!-- Login page interaction script -->
+  <script>
+    // Tab switching
+    const tabSignIn = document.getElementById('tabSignInBtn');
+    const tabSignUp = document.getElementById('tabSignUpBtn');
+    const signInView = document.getElementById('signInView');
+    const signUpView = document.getElementById('signUpView');
+    const alertBanner = document.getElementById('authAlertBanner');
+    const alertMessage = document.getElementById('authAlertMessage');
+
+    function showAlert(msg) {
+      if (alertBanner && alertMessage) {
+        alertMessage.textContent = msg;
+        alertBanner.style.display = 'block';
+        alertBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function hideAlert() {
+      if (alertBanner) alertBanner.style.display = 'none';
+    }
+
+    tabSignIn.addEventListener('click', function () {
+      tabSignIn.classList.add('active');
+      tabSignUp.classList.remove('active');
+      signInView.classList.add('active');
+      signUpView.classList.remove('active');
+      hideAlert();
+    });
+
+    tabSignUp.addEventListener('click', function () {
+      tabSignUp.classList.add('active');
+      tabSignIn.classList.remove('active');
+      signUpView.classList.add('active');
+      signInView.classList.remove('active');
+      hideAlert();
+    });
+
+    // Password visibility toggles
+    function setupPassToggle(btnId, inputId) {
+      const btn = document.getElementById(btnId);
+      const input = document.getElementById(inputId);
+      if (btn && input) {
+        btn.addEventListener('click', function () {
+          const isPass = input.type === 'password';
+          input.type = isPass ? 'text' : 'password';
+          btn.innerHTML = isPass ? '<i class="fa-solid fa-eye-slash"></i>' : '<i class="fa-solid fa-eye"></i>';
+        });
+      }
+    }
+    setupPassToggle('btnToggleLoginPass', 'loginPassword');
+    setupPassToggle('btnToggleRegPass', 'regPassword');
+
+    // Pre-fill remembered email
+    const remembered = localStorage.getItem('cafe_remember_email');
+    if (remembered) {
+      const loginEmailInput = document.getElementById('loginEmail');
+      if (loginEmailInput) loginEmailInput.value = remembered;
+    }
+
+    // Check if user is already logged in
+    window.renderLoginPageState = function () {
+      const user = window.AuthManager.getCurrentUser();
+      const loggedInBox = document.getElementById('alreadyLoggedInState');
+      const formsContainer = document.getElementById('authFormsContainer');
+
+      if (user) {
+        loggedInBox.style.display = 'block';
+        formsContainer.style.display = 'none';
+        document.getElementById('loggedInUserName').textContent = user.name;
+        document.getElementById('loggedInUserEmail').textContent = user.email;
+        document.getElementById('loggedInUserTier').textContent = user.tier || 'Gold Barista 🥇';
+        document.getElementById('loggedInUserBeans').textContent = (user.beans || 450) + ' Beans ☕';
+      } else {
+        loggedInBox.style.display = 'none';
+        formsContainer.style.display = 'block';
+      }
+    };
+
+    renderLoginPageState();
+
+    // 1. One-Click Demo Login Button
+    const btnDemo = document.getElementById('btnQuickDemoLogin');
+    if (btnDemo) {
+      btnDemo.addEventListener('click', function () {
+        btnDemo.disabled = true;
+        btnDemo.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+        
+        setTimeout(() => {
+          const res = window.AuthManager.quickDemoLogin();
+          if (res.success) {
+            window.location.href = 'index.html?login_success=1';
+          } else {
+            showAlert(res.message);
+            btnDemo.disabled = false;
+            btnDemo.innerHTML = '<i class="fa-solid fa-mug-hot"></i> Demo Login';
+          }
+        }, 500);
+      });
+    }
+
+    // 2. Sign In Form Submission
+    const signInForm = document.getElementById('signInForm');
+    if (signInForm) {
+      signInForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideAlert();
+
+        const email = document.getElementById('loginEmail').value;
+        const pass = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMeCheck').checked;
+
+        const submitBtn = document.getElementById('btnSubmitLogin');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+
+        setTimeout(() => {
+          const res = window.AuthManager.login(email, pass, rememberMe);
+          if (res.success) {
+            submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Welcome Back!';
+            window.location.href = 'index.html?login_success=1';
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Sign In & Brew</span> <i class="fa-solid fa-arrow-right"></i>';
+            showAlert(res.message);
+          }
+        }, 600);
+      });
+    }
+
+    // 3. Sign Up Form Submission
+    const signUpForm = document.getElementById('signUpForm');
+    if (signUpForm) {
+      signUpForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideAlert();
+
+        const formData = {
+          name: document.getElementById('regName').value,
+          email: document.getElementById('regEmail').value,
+          phone: document.getElementById('regPhone').value,
+          favDrink: document.getElementById('regFavDrink').value,
+          password: document.getElementById('regPassword').value,
+          confirmPassword: document.getElementById('regConfirmPassword').value
+        };
+
+        const submitBtn = document.getElementById('btnSubmitRegister');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account & Crediting 100 Beans...';
+
+        setTimeout(() => {
+          const res = window.AuthManager.register(formData);
+          if (res.success) {
+            submitBtn.innerHTML = '<i class="fa-solid fa-gift"></i> Welcome to the Club!';
+            window.location.href = 'index.html?registered=1';
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Create Account & Claim 100 Beans</span> <i class="fa-solid fa-gift"></i>';
+            showAlert(res.message);
+          }
+        }, 700);
+      });
+    }
+
+    // 4. Social Auth Simulation
+    window.simulateSocialAuth = function (provider) {
+      const user = {
+        id: 'usr-social-' + Math.floor(1000 + Math.random() * 9000),
+        name: provider === 'Google' ? 'Alex Morgan' : 'Jordan Lee',
+        email: provider === 'Google' ? 'alex.morgan@gmail.com' : 'jordan.lee@icloud.com',
+        tier: 'Silver Roast 🥈',
+        beans: 350,
+        stamps: 3,
+        favDrink: 'Cappuccino Coffee',
+        joinedDate: 'November 2026'
+      };
+      window.AuthManager.setCurrentUser(user);
+      window.location.href = 'index.html?login_success=1';
+    };
+
+    // 5. Forgot Password Modal Trigger
+    const btnForgot = document.getElementById('btnForgotPassword');
+    if (btnForgot) {
+      btnForgot.addEventListener('click', function () {
+        const modalEl = document.getElementById('forgotPassModal');
+        if (modalEl && window.bootstrap) {
+          const modal = new bootstrap.Modal(modalEl);
+          modal.show();
+        }
+      });
+    }
+
+    const btnSendReset = document.getElementById('btnSendPasswordReset');
+    if (btnSendReset) {
+      btnSendReset.addEventListener('click', function () {
+        btnSendReset.disabled = true;
+        btnSendReset.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        setTimeout(() => {
+          btnSendReset.disabled = false;
+          btnSendReset.innerHTML = '<i class="fa-solid fa-check"></i> Sent';
+          document.getElementById('forgotSuccessMessage').style.display = 'block';
+        }, 700);
+      });
+    }
+  </script>
+
+</body>
+</html>
+

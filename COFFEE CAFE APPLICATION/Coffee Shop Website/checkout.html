@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout - Coffee Cafe ☕</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="checkout-page">
+
+  <!-- Sticky Checkout Header -->
+  <header class="checkout-header">
+    <div class="container checkout-header-content">
+      <a href="index.html" class="checkout-logo">
+        <img src="./images/logo.png" alt="Coffee Cafe">
+      </a>
+
+      <!-- Visual 3-Step Pill -->
+      <div class="checkout-steps-badge">
+        <div class="step-pill-indicator active">
+          <span class="num">1</span> Cart
+        </div>
+        <i class="fa-solid fa-chevron-right step-divider-arrow"></i>
+        <div class="step-pill-indicator active">
+          <span class="num">2</span> Details
+        </div>
+        <i class="fa-solid fa-chevron-right step-divider-arrow"></i>
+        <div class="step-pill-indicator active">
+          <span class="num">3</span> Payment
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <div class="security-badge">
+          <i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Encrypted
+        </div>
+        <a href="index.html#menu" class="btn btn-outline-dark btn-sm fw-bold px-3 py-1" style="border-radius: 20px;">
+          <i class="fa-solid fa-arrow-left me-1"></i> Menu
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Checkout Container -->
+  <main class="checkout-main-container">
+    <div class="row g-4">
+      
+      <!-- ========================================================
+           LEFT COLUMN: DELIVERY & PAYMENT DETAILS
+           ======================================================== -->
+      <div class="col-lg-7">
+        
+        <!-- CARD 1: Delivery or Pickup Selection -->
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <h4 class="checkout-card-title">
+              <i class="fa-solid fa-location-dot"></i> 1. Delivery & Contact Details
+            </h4>
+          </div>
+
+          <!-- Type Switcher -->
+          <div class="delivery-type-grid">
+            <div class="delivery-type-card active" id="typeDeliveryBtn">
+              <div class="delivery-type-icon"><i class="fa-solid fa-motorcycle"></i></div>
+              <div class="delivery-type-text">
+                <h6>Doorstep Delivery</h6>
+                <span>Fresh & steaming hot (20–30 mins)</span>
+              </div>
+            </div>
+            <div class="delivery-type-card" id="typePickupBtn">
+              <div class="delivery-type-icon"><i class="fa-solid fa-shop"></i></div>
+              <div class="delivery-type-text">
+                <h6>Cafe Counter Pickup</h6>
+                <span>Ready at barista counter (FREE)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Inputs -->
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="checkout-form-group">
+                <label class="checkout-form-label" for="custName">Your Name</label>
+                <input type="text" class="checkout-form-input" id="custName" placeholder="e.g. Alex Vance" value="Alex Vance" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="checkout-form-group">
+                <label class="checkout-form-label" for="custPhone">Phone Number</label>
+                <input type="tel" class="checkout-form-input" id="custPhone" placeholder="+91 98765 43210" value="+91 9876543210" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address field (hidden if pickup) -->
+          <div id="deliveryAddressGroup">
+            <div class="checkout-form-group">
+              <label class="checkout-form-label" for="custAddress">Street Address / Landmark</label>
+              <input type="text" class="checkout-form-input" id="custAddress" placeholder="Flat 402, Green Avenue, Near Metro Station" value="Flat 402, Green Avenue, Buti-Bori, Nagpur">
+            </div>
+          </div>
+
+          <div class="checkout-form-group mb-0">
+            <label class="checkout-form-label" for="custNotes">Special Instructions / Coffee Preference</label>
+            <input type="text" class="checkout-form-input" id="custNotes" placeholder="e.g. Extra hot, low sugar, leave at door">
+          </div>
+        </div>
+
+        <!-- CARD 2: Select Payment Method -->
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <h4 class="checkout-card-title">
+              <i class="fa-solid fa-credit-card"></i> 2. Select Payment Method
+            </h4>
+            <span class="badge bg-light text-dark border">100% Secure Checkout</span>
+          </div>
+
+          <!-- Payment Tabs List -->
+          <div class="payment-tabs-list">
+            <div class="payment-tab-btn active" data-method="upi">
+              <i class="fa-solid fa-qrcode"></i>
+              <span>UPI / QR</span>
+            </div>
+            <div class="payment-tab-btn" data-method="card">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>Card</span>
+            </div>
+            <div class="payment-tab-btn" data-method="netbanking">
+              <i class="fa-solid fa-building-columns"></i>
+              <span>Net Banking</span>
+            </div>
+            <div class="payment-tab-btn" data-method="cod">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+              <span>Pay on Arrival</span>
+            </div>
+          </div>
+
+          <!-- PANEL 1: UPI & QR Code -->
+          <div class="payment-panel active" id="panel-upi">
+
+            <!-- UPI App Logos Grid -->
+            <div style="font-weight: 800; font-size: 0.88rem; color: #1f130b; margin-bottom: 12px; text-align:center;">
+              Select your UPI App to Pay
+            </div>
+            <div class="payment-apps-grid" id="upiAppsGrid">
+
+              <!-- Google Pay -->
+              <div class="payment-app-card active" data-app="gpay" onclick="selectUpiApp(this)">
+                <div class="app-check-indicator">✓</div>
+                <div class="app-logo-box">
+                  <svg viewBox="0 0 80 32" xmlns="http://www.w3.org/2000/svg" style="width:72px;height:28px;">
+                    <text x="0" y="24" font-family="Arial,sans-serif" font-weight="700" font-size="26">
+                      <tspan fill="#4285F4">G</tspan><tspan fill="#34A853">o</tspan><tspan fill="#FBBC04">o</tspan><tspan fill="#EA4335">g</tspan><tspan fill="#4285F4">l</tspan><tspan fill="#34A853">e</tspan>
+                    </text>
+                    <text x="2" y="32" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#5F6368" letter-spacing="1">Pay</text>
+                  </svg>
+                </div>
+                <div class="app-name">GPay</div>
+              </div>
+
+              <!-- PhonePe -->
+              <div class="payment-app-card" data-app="phonepe" onclick="selectUpiApp(this)">
+                <div class="app-check-indicator">✓</div>
+                <div class="app-logo-box">
+                  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:44px;">
+                    <rect width="60" height="60" rx="14" fill="#5F259F"/>
+                    <text x="30" y="38" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="white" text-anchor="middle">Pe</text>
+                    <circle cx="46" cy="15" r="5" fill="#CBB8E8"/>
+                  </svg>
+                </div>
+                <div class="app-name">PhonePe</div>
+              </div>
+
+              <!-- Paytm -->
+              <div class="payment-app-card" data-app="paytm" onclick="selectUpiApp(this)">
+                <div class="app-check-indicator">✓</div>
+                <div class="app-logo-box">
+                  <svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg" style="width:72px;height:30px;">
+                    <rect width="80" height="36" rx="6" fill="#00B9F1"/>
+                    <text x="40" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="white" text-anchor="middle" letter-spacing="0.5">Paytm</text>
+                  </svg>
+                </div>
+                <div class="app-name">Paytm</div>
+              </div>
+
+              <!-- BHIM -->
+              <div class="payment-app-card" data-app="bhim" onclick="selectUpiApp(this)">
+                <div class="app-check-indicator">✓</div>
+                <div class="app-logo-box">
+                  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:44px;">
+                    <rect width="60" height="20" rx="0" fill="#FF6700"/>
+                    <rect y="20" width="60" height="20" fill="white"/>
+                    <rect y="40" width="60" height="20" rx="0" fill="#138808"/>
+                    <rect x="0" y="0" width="60" height="60" rx="12" fill="transparent" stroke="#ddd" stroke-width="0"/>
+                    <text x="30" y="35" font-family="Arial,sans-serif" font-weight="900" font-size="15" fill="#00008B" text-anchor="middle">BHIM</text>
+                  </svg>
+                </div>
+                <div class="app-name">BHIM</div>
+              </div>
+
+              <!-- Amazon Pay -->
+              <div class="payment-app-card" data-app="amazonpay" onclick="selectUpiApp(this)">
+                <div class="app-check-indicator">✓</div>
+                <div class="app-logo-box">
+                  <svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg" style="width:72px;height:30px;">
+                    <text x="3" y="22" font-family="Arial,sans-serif" font-weight="700" font-size="15" fill="#232F3E">amazon</text>
+                    <path d="M3 26 Q38 34 70 26" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <text x="44" y="22" font-family="Arial,sans-serif" font-weight="700" font-size="15" fill="#FF9900">pay</text>
+                  </svg>
+                </div>
+                <div class="app-name">Amazon Pay</div>
+              </div>
+
+              <!-- WhatsApp Pay -->
+              <div class="payment-app-card" data-app="whatsapppay" onclick="selectUpiApp(this)">
+                <div class="app-check-indicator">✓</div>
+                <div class="app-logo-box">
+                  <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:44px;">
+                    <rect width="60" height="60" rx="14" fill="#25D366"/>
+                    <!-- WhatsApp phone icon shape -->
+                    <path d="M30 12 C20 12 13 19 13 29 C13 32.5 14 35.8 16 38.5 L13 47 L22 44.2 C24.6 45.9 27.2 46.8 30 46.8 C40 46.8 47 39.8 47 29.8 C47 19.8 40 12 30 12 Z" fill="white"/>
+                    <path d="M23 24 C23.5 24 24 24 24.5 25.5 C25 27 26.5 30.5 26.5 30.5 C26.5 30.5 26.8 31.2 26.5 31.8 C26.2 32.4 25.5 33.2 25 33.5 C24.5 33.8 24 34.2 24.5 35 C25 35.8 27 38.5 30 40 C33 41.5 33.5 40.8 34.5 40.2 C35.5 39.6 36 38.8 36.8 39.2 C37.6 39.6 39 41.2 39 41.8 C39 42.4 39 43.5 37.5 44.2 C36 44.9 33 45 29.5 41.5 C26 38 23 33 22.8 30.5 C22.6 28 24 25.2 24 25.2" fill="#25D366"/>
+                  </svg>
+                </div>
+                <div class="app-name">WhatsApp Pay</div>
+              </div>
+
+            </div><!-- /.payment-apps-grid -->
+
+            <!-- QR Code Box -->
+            <div class="upi-qr-box" style="margin-top:16px;">
+              <div style="font-weight: 800; font-size: 0.88rem; color: #1f130b; margin-bottom: 8px;">
+                Or Scan QR Code with any UPI App
+              </div>
+              <div class="upi-qr-display">
+                <i class="fa-solid fa-qrcode" style="font-size: 7rem; color: #1f130b;"></i>
+              </div>
+            </div>
+
+            <div class="text-center text-muted" style="font-size: 0.82rem; margin-bottom: 12px;">— OR ENTER UPI ID —</div>
+
+            <div class="input-group">
+              <input type="text" class="form-control" id="upiIdInput" placeholder="username@okaxis or mobile@upi" style="border-radius: 10px 0 0 10px;">
+              <button class="btn btn-dark fw-bold" type="button" style="border-radius: 0 10px 10px 0;" onclick="window.showCafeToast('UPI ID Verified! Proceed to pay below.')">
+                Verify
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL 2: Credit / Debit Card -->
+          <div class="payment-panel" id="panel-card">
+
+            <!-- Card Brand Logos -->
+            <div class="card-brands-row">
+              <!-- Visa -->
+              <div class="card-brand-pill">
+                <svg viewBox="0 0 80 26" xmlns="http://www.w3.org/2000/svg" style="width:58px;height:20px;">
+                  <rect width="80" height="26" rx="5" fill="#1A1F71"/>
+                  <text x="40" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="white" text-anchor="middle" letter-spacing="2">VISA</text>
+                </svg>
+              </div>
+              <!-- Mastercard -->
+              <div class="card-brand-pill">
+                <svg viewBox="0 0 54 34" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:28px;">
+                  <circle cx="20" cy="17" r="15" fill="#EB001B"/>
+                  <circle cx="34" cy="17" r="15" fill="#F79E1B"/>
+                  <path d="M27 6.8 A15 15 0 0 1 27 27.2 A15 15 0 0 1 27 6.8Z" fill="#FF5F00"/>
+                </svg>
+              </div>
+              <!-- RuPay -->
+              <div class="card-brand-pill">
+                <svg viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" style="width:60px;height:22px;">
+                  <rect width="80" height="28" rx="5" fill="#1C6DB5"/>
+                  <text x="8" y="21" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="white" letter-spacing="0.5">Ru</text>
+                  <text x="32" y="21" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#F7941D">Pay</text>
+                </svg>
+              </div>
+              <!-- Amex -->
+              <div class="card-brand-pill">
+                <svg viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" style="width:60px;height:22px;">
+                  <rect width="80" height="28" rx="5" fill="#016FD0"/>
+                  <text x="40" y="20" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="white" text-anchor="middle" letter-spacing="0.5">AMERICAN</text>
+                  <text x="40" y="29" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="white" text-anchor="middle" letter-spacing="1">EXPRESS</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Real-Time Interactive Card Preview -->
+            <div class="interactive-card-preview">
+              <div class="card-chip-row">
+                <div class="card-chip"></div>
+                <i class="fa-brands fa-cc-mastercard card-brand-logo" id="cardPreviewBrand"></i>
+              </div>
+              <div class="card-num-display" id="cardPreviewNum">
+                •••• •••• •••• ••••
+              </div>
+              <div class="card-meta-row">
+                <div>
+                  CARDHOLDER
+                  <strong id="cardPreviewName">ALEX VANCE</strong>
+                </div>
+                <div>
+                  EXPIRES
+                  <strong id="cardPreviewExpiry">12/28</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Inputs -->
+            <div class="checkout-form-group">
+              <label class="checkout-form-label" for="cardNumInput">Card Number</label>
+              <input type="text" class="checkout-form-input" id="cardNumInput" placeholder="4532 8920 1204 8821" maxlength="19">
+            </div>
+
+            <div class="row g-2">
+              <div class="col-md-7">
+                <div class="checkout-form-group">
+                  <label class="checkout-form-label" for="cardNameInput">Cardholder Name</label>
+                  <input type="text" class="checkout-form-input" id="cardNameInput" placeholder="ALEX VANCE">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="checkout-form-group">
+                  <label class="checkout-form-label" for="cardExpiryInput">Expiry (MM/YY)</label>
+                  <input type="text" class="checkout-form-input" id="cardExpiryInput" placeholder="12/28" maxlength="5">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="checkout-form-group">
+                  <label class="checkout-form-label" for="cardCvvInput">CVV</label>
+                  <input type="password" class="checkout-form-input" id="cardCvvInput" placeholder="•••" maxlength="4">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 3: Net Banking -->
+          <div class="payment-panel" id="panel-netbanking">
+            <label class="checkout-form-label">Select Your Bank</label>
+            <div class="bank-cards-grid">
+
+              <!-- HDFC -->
+              <div class="bank-select-card active" onclick="selectBank(this)">
+                <div class="bank-logo-icon" style="background:#004C97;">
+                  <svg viewBox="0 0 60 26" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:22px;">
+                    <text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="white" letter-spacing="0.5">HDFC</text>
+                  </svg>
+                </div>
+                <div class="bank-name">HDFC Bank</div>
+              </div>
+
+              <!-- SBI -->
+              <div class="bank-select-card" onclick="selectBank(this)">
+                <div class="bank-logo-icon" style="background:#22409A;">
+                  <svg viewBox="0 0 60 26" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:22px;">
+                    <text x="8" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="white">SBI</text>
+                  </svg>
+                </div>
+                <div class="bank-name">SBI</div>
+              </div>
+
+              <!-- ICICI -->
+              <div class="bank-select-card" onclick="selectBank(this)">
+                <div class="bank-logo-icon" style="background:#F7941D;">
+                  <svg viewBox="0 0 70 26" xmlns="http://www.w3.org/2000/svg" style="width:58px;height:22px;">
+                    <text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#8B0000" letter-spacing="0.3">ICICI</text>
+                  </svg>
+                </div>
+                <div class="bank-name">ICICI Bank</div>
+              </div>
+
+              <!-- Axis -->
+              <div class="bank-select-card" onclick="selectBank(this)">
+                <div class="bank-logo-icon" style="background:#97144D;">
+                  <svg viewBox="0 0 70 26" xmlns="http://www.w3.org/2000/svg" style="width:58px;height:22px;">
+                    <text x="6" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="17" fill="white" letter-spacing="0.5">AXIS</text>
+                  </svg>
+                </div>
+                <div class="bank-name">Axis Bank</div>
+              </div>
+
+              <!-- Kotak -->
+              <div class="bank-select-card" onclick="selectBank(this)">
+                <div class="bank-logo-icon" style="background:#EE3124;">
+                  <svg viewBox="0 0 70 26" xmlns="http://www.w3.org/2000/svg" style="width:58px;height:22px;">
+                    <text x="2" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="white" letter-spacing="0.3">Kotak</text>
+                  </svg>
+                </div>
+                <div class="bank-name">Kotak Bank</div>
+              </div>
+
+              <!-- PNB -->
+              <div class="bank-select-card" onclick="selectBank(this)">
+                <div class="bank-logo-icon" style="background:#FF6200;">
+                  <svg viewBox="0 0 60 26" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:22px;">
+                    <text x="6" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="white">PNB</text>
+                  </svg>
+                </div>
+                <div class="bank-name">PNB</div>
+              </div>
+
+            </div><!-- /.bank-cards-grid -->
+
+            <select class="form-select mt-3" style="border-radius: 10px; font-size: 0.9rem;">
+              <option selected>Choose other banks...</option>
+              <option value="yes">Yes Bank</option>
+              <option value="idbi">IDBI Bank</option>
+              <option value="bob">Bank of Baroda</option>
+              <option value="canara">Canara Bank</option>
+              <option value="ubi">Union Bank</option>
+            </select>
+          </div>
+
+          <!-- PANEL 4: Cash on Delivery / Counter -->
+          <div class="payment-panel" id="panel-cod">
+            <div class="text-center py-3">
+              <i class="fa-solid fa-mug-hot fa-3x mb-3" style="color: #b2744c;"></i>
+              <h5 style="font-weight: 800; color: #1f130b;">Pay on Delivery or at Counter</h5>
+              <p style="font-size: 0.85rem; color: #777; max-width: 380px; margin: 0 auto;">
+                Pay seamlessly with cash, card, or UPI when our courier arrives with your hot coffee or when you pick it up!
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================================
+           RIGHT COLUMN: INTERACTIVE ORDER SUMMARY
+           ======================================================== -->
+      <div class="col-lg-5">
+        <div class="order-summary-card">
+          <div class="checkout-card-header">
+            <h4 class="checkout-card-title">
+              <i class="fa-solid fa-bag-shopping"></i> Order Summary
+            </h4>
+            <span class="badge bg-warning text-dark fw-bold">Artisan Roast</span>
+          </div>
+
+          <!-- Cart Items Scrollable List -->
+          <div class="cart-items-scroll-list" id="checkoutCartList">
+            <!-- Dynamically populated via checkout.js -->
+          </div>
+
+          <!-- Loyalty Bean Discount Callout (If user has beans) -->
+          <div class="checkout-loyalty-callout" id="checkoutLoyaltyCallout">
+            <div>
+              <div style="font-size: 0.82rem; font-weight: 800; color: #1f130b;">
+                <i class="fa-solid fa-crown text-warning me-1"></i> Bean Club Perks
+              </div>
+              <div style="font-size: 0.76rem; color: #6d594b;" id="checkoutUserBeansDisplay">
+                450 Beans available
+              </div>
+            </div>
+            <button type="button" class="btn-redeem-points-checkout" id="btnRedeemPointsCheckout">
+              Redeem 100 Beans (-₹50)
+            </button>
+          </div>
+
+          <!-- Promo Code Box -->
+          <div class="promo-code-box">
+            <input type="text" class="checkout-form-input promo-input" id="promoCodeInput" placeholder="PROMO CODE (e.g. COFFEEAI)">
+            <button type="button" class="btn-apply-promo" id="btnApplyPromo">Apply</button>
+          </div>
+          <div id="promoFeedback" style="display: none; font-size: 0.8rem; font-weight: 700; margin-top: -10px; margin-bottom: 15px;"></div>
+
+          <!-- Price Breakdown -->
+          <ul class="price-breakdown-list">
+            <li class="price-breakdown-item">
+              <span>Items Subtotal</span>
+              <strong id="summarySubtotal">₹289</strong>
+            </li>
+            <li class="price-breakdown-item">
+              <span>Delivery Fee</span>
+              <strong id="summaryDelivery">₹40</strong>
+            </li>
+            <li class="price-breakdown-item">
+              <span>Taxes & GST (5%)</span>
+              <strong id="summaryTaxes">₹14</strong>
+            </li>
+            <li class="price-breakdown-item discount-item" id="summaryPromoRow" style="display: none;">
+              <span>Promo Discount</span>
+              <strong id="summaryPromoVal">-₹0</strong>
+            </li>
+            <li class="price-breakdown-item discount-item" id="summaryBeansRow" style="display: none;">
+              <span>Bean Points Reward</span>
+              <strong id="summaryBeansVal">-₹50</strong>
+            </li>
+            <li class="price-total-row">
+              <span>Grand Total</span>
+              <span class="price-total-val" id="summaryTotal">₹343</span>
+            </li>
+          </ul>
+
+          <!-- Primary CTA Payment Button -->
+          <button type="button" class="btn-complete-order" id="btnCompletePayment">
+            <span>Pay & Confirm Order</span> <i class="fa-solid fa-lock"></i>
+          </button>
+
+          <div class="text-center text-muted mt-3" style="font-size: 0.78rem;">
+            <i class="fa-solid fa-check text-success me-1"></i> Fresh Arabica Guarantee • Live Stepper Tracking Active
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================
+       ORDER CONFIRMATION CELEBRATION MODAL
+       ======================================================== -->
+  <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 24px; border: 2px solid #ecd9c6; overflow: hidden;">
+        <div class="modal-body checkout-success-body">
+          <div class="success-check-circle">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h3 style="font-weight: 900; color: #1f130b; margin-bottom: 6px;">Payment Successful!</h3>
+          <p style="font-size: 0.9rem; color: #777; margin-bottom: 20px;">
+            Your freshly brewed artisan coffee order has been queued with our master barista.
+          </p>
+
+          <div style="background: #faf7f4; border: 1px solid #ebd9cb; border-radius: 16px; padding: 18px; margin-bottom: 22px; text-align: left;">
+            <div class="d-flex justify-content-between mb-2">
+              <span style="font-size: 0.85rem; color: #888;">Order ID:</span>
+              <strong style="color: #b2744c; font-size: 1rem;" id="modalSuccessOrderId">#CC-8421</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span style="font-size: 0.85rem; color: #888;">Items:</span>
+              <strong style="font-size: 0.9rem; color: #1f130b;" id="modalSuccessItem">Hazelnut Coffee with Oat Milk</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span style="font-size: 0.85rem; color: #888;">Amount Paid:</span>
+              <strong style="font-size: 0.95rem; color: #1f130b;" id="modalSuccessTotal">₹343</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span style="font-size: 0.85rem; color: #888;">Bean Rewards:</span>
+              <span class="badge bg-warning text-dark fw-bold" id="modalSuccessBeans">+170 Beans Earned! ☕</span>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <a href="index.html#tracker" class="btn btn-dark py-3 fw-bold" style="border-radius: 12px; font-size: 1rem;">
+              <i class="fa-solid fa-stopwatch me-2 text-warning"></i> Track Brew in Real-Time ➔
+            </a>
+            <a href="index.html" class="btn btn-outline-secondary py-2 fw-bold" style="border-radius: 12px;">
+              Return to Cafe Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="cafeToastContainer" class="cafe-toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="auth.js"></script>
+  <script src="checkout.js"></script>
+
+  <script>
+    // ── UPI App Selector ──────────────────────────────────────────────────────
+    function selectUpiApp(card) {
+      const allCards = document.querySelectorAll('#upiAppsGrid .payment-app-card');
+      allCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const appName = card.querySelector('.app-name').textContent.trim();
+      if (window.showCafeToast) window.showCafeToast('✅ ' + appName + ' selected — scan QR or enter UPI ID below');
+      if (window.CheckoutApp) window.CheckoutApp.selectedUpiApp = card.dataset.app;
+    }
+
+    // ── Net Banking Bank Selector ─────────────────────────────────────────────
+    function selectBank(card) {
+      const allCards = document.querySelectorAll('.bank-select-card');
+      allCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const bankName = card.querySelector('.bank-name').textContent.trim();
+      if (window.showCafeToast) window.showCafeToast('🏦 ' + bankName + ' selected');
+    }
+  </script>
+
+</body>
+</html>
+

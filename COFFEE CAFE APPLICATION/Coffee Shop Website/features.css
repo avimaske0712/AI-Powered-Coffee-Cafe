@@ -1,0 +1,1674 @@
+/* ==========================================================================
+   COFFEE CAFE - ADVANCED FEATURES STYLESHEET
+   1. Global Enhancements & Utility
+   2. Hero AI Badges
+   3. Machine Learning Recommendation Engine
+   4. Real-Time Order Tracking System
+   5. Loyalty Rewards & Bean Club System
+   6. Virtual Barista AI Chatbot Widget
+   7. Modals & Toast Notifications
+   ========================================================================== */
+
+:root {
+  --coffee-primary: #b2744c;
+  --coffee-primary-hover: #9c5f37;
+  --coffee-dark: #22140c;
+  --coffee-espresso: #2e1a10;
+  --coffee-cream: #f7f5f2;
+  --coffee-latte: #ecd9c6;
+  --coffee-gold: #e5a65d;
+  --coffee-card-bg: #ffffff;
+  --coffee-border: #ebd9cb;
+  --coffee-text-muted: #726259;
+  --coffee-shadow: 0 12px 30px rgba(71, 40, 20, 0.08);
+  --coffee-shadow-lg: 0 20px 45px rgba(50, 24, 10, 0.14);
+  --coffee-radius: 16px;
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. Global Enhancements & Utility
+   -------------------------------------------------------------------------- */
+#navbar {
+  z-index: 1030;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+section, .about, #gallary {
+  scroll-margin-top: 75px;
+}
+
+#home {
+  height: auto !important;
+  min-height: 95vh;
+  padding-bottom: 60px;
+}
+
+.content {
+  padding-top: 120px !important;
+  margin-right: 56px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 70px !important;
+  }
+}
+
+.badge-ai {
+  background: linear-gradient(135deg, #b2744c, #e5a65d);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-live-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+  animation: livePulse 1.8s infinite;
+}
+
+@keyframes livePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(46, 204, 113, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
+.feature-section {
+  padding: 85px 0 65px;
+  position: relative;
+}
+
+.section-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(178, 116, 76, 0.12);
+  color: var(--coffee-primary);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 12px;
+}
+
+.section-main-heading {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a120b;
+  margin-bottom: 12px;
+}
+
+.section-main-heading span {
+  color: var(--coffee-primary);
+  position: relative;
+}
+
+.section-subtitle-text {
+  color: var(--coffee-text-muted);
+  font-size: 1.05rem;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* Nav quick link custom styling */
+.nav-barista-btn {
+  background: #1f130b !important;
+  color: #ffffff !important;
+  border-radius: 25px !important;
+  padding: 8px 18px !important;
+  margin-left: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+}
+.nav-barista-btn:hover {
+  background: #ffffff !important;
+  color: var(--coffee-primary) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+/* Nav login button & user profile dropdown */
+.nav-login-btn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--coffee-dark) !important;
+  border-radius: 25px !important;
+  padding: 8px 18px !important;
+  margin-left: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+}
+.nav-login-btn:hover {
+  background: var(--coffee-dark) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-user-profile-btn {
+  background: #1f130b !important;
+  color: #ffffff !important;
+  border-radius: 30px !important;
+  padding: 5px 14px 5px 8px !important;
+  margin-left: 8px;
+  border: 1.5px solid var(--coffee-gold) !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.nav-user-profile-btn:hover {
+  background: #382012 !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.user-avatar-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--coffee-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.user-beans-pill {
+  background: rgba(229, 166, 93, 0.2);
+  color: var(--coffee-gold);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* Nav Cart Button */
+.nav-cart-btn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--coffee-dark) !important;
+  border-radius: 25px !important;
+  padding: 7px 14px !important;
+  margin-left: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+.nav-cart-btn:hover {
+  background: var(--coffee-dark) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.nav-cart-count-badge {
+  background: var(--coffee-primary);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Hero Interactive Bar & Badges
+   -------------------------------------------------------------------------- */
+.hero-buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.hero-secondary-btn {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  padding: 8px 22px;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.hero-secondary-btn:hover {
+  background: #ffffff;
+  color: var(--coffee-dark);
+  transform: translateY(-2px);
+}
+
+.hero-features-ribbon {
+  background: rgba(34, 20, 12, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 18px 25px;
+  margin-top: 50px;
+  max-width: 1050px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.hero-ribbon-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #ffffff;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  border-radius: 10px;
+}
+
+.hero-ribbon-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--coffee-gold);
+}
+
+.hero-ribbon-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(178, 116, 76, 0.35);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--coffee-gold);
+  flex-shrink: 0;
+}
+
+.hero-ribbon-text h6 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.hero-ribbon-text span {
+  font-size: 0.78rem;
+  color: #d1c5be;
+}
+
+/* --------------------------------------------------------------------------
+   3. Machine Learning Recommendation Engine
+   -------------------------------------------------------------------------- */
+#recommender {
+  background: linear-gradient(180deg, #f7f5f2 0%, #efebe6 100%);
+}
+
+.ai-engine-container {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: var(--coffee-shadow-lg);
+  border: 1px solid var(--coffee-border);
+  overflow: hidden;
+  padding: 35px;
+}
+
+.ml-param-group {
+  margin-bottom: 22px;
+}
+
+.ml-param-label {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--coffee-dark);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ml-param-label span.info-tag {
+  font-size: 0.75rem;
+  color: var(--coffee-primary);
+  font-weight: 500;
+}
+
+/* Flavor chips selector */
+.flavor-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flavor-chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #dfd4ca;
+  background: #fbf9f7;
+  color: #4a3c33;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.flavor-chip:hover {
+  border-color: var(--coffee-primary);
+  background: #fdf5ef;
+}
+
+.flavor-chip.active {
+  background: var(--coffee-primary);
+  border-color: var(--coffee-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(178, 116, 76, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Temperature segmented pills */
+.temp-pills-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.temp-pill {
+  text-align: center;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1.5px solid #dfd4ca;
+  background: #fbf9f7;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.temp-pill.active {
+  background: #1f130b;
+  border-color: #1f130b;
+  color: #ffffff;
+}
+
+/* Caffeine slider & presets */
+.caffeine-range-container {
+  padding: 5px 0;
+}
+
+.caffeine-meter-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--coffee-text-muted);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.custom-coffee-slider {
+  width: 100%;
+  accent-color: var(--coffee-primary);
+  cursor: pointer;
+}
+
+/* Run AI Engine Button */
+.btn-run-ml {
+  background: linear-gradient(135deg, #b2744c, #8e4f29);
+  color: #ffffff;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(178, 116, 76, 0.3);
+}
+
+.btn-run-ml:hover {
+  background: linear-gradient(135deg, #9c5f37, #723c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(178, 116, 76, 0.45);
+}
+
+/* Right Column: AI Output Card */
+.ai-result-panel {
+  background: #fffdfa;
+  border: 2px solid #ecd9c6;
+  border-radius: 20px;
+  padding: 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-match-badge-float {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #1f130b;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+
+.ai-match-badge-float span.score-val {
+  color: #2ecc71;
+}
+
+.ai-recommendation-hero {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.ai-rec-image-box {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+  background: #f3eae1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+}
+
+.ai-rec-image-box img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.ai-rec-image-box:hover img {
+  transform: scale(1.08);
+}
+
+.ai-rec-details h4 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1a120b;
+  margin-bottom: 4px;
+}
+
+.ai-rec-price-tag {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--coffee-primary);
+}
+
+.ai-rec-price-tag strike {
+  font-size: 0.9rem;
+  color: #999;
+  margin-left: 6px;
+}
+
+/* Radar & Dimension bars */
+.ml-dimension-bar-item {
+  margin-bottom: 10px;
+}
+
+.ml-dimension-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4a3c33;
+  margin-bottom: 4px;
+}
+
+.ml-progress-track {
+  height: 6px;
+  background: #ede3da;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ml-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #b2744c, #e5a65d);
+  border-radius: 10px;
+  transition: width 0.8s ease-in-out;
+}
+
+/* AI explanation callout */
+.ai-reasoning-quote {
+  background: #fbf5ef;
+  border-left: 4px solid var(--coffee-primary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.87rem;
+  color: #473326;
+  margin: 18px 0;
+  line-height: 1.5;
+}
+
+/* Collaborative Recommendations Sub-grid */
+.collaborative-picks-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px dashed #d9cbbf;
+}
+
+.collaborative-card {
+  background: #ffffff;
+  border: 1px solid var(--coffee-border);
+  border-radius: 14px;
+  padding: 14px;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.collaborative-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border-color: var(--coffee-primary);
+}
+
+.collab-thumb {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  background: #f7f3ee;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. Real-Time Order Tracking System
+   -------------------------------------------------------------------------- */
+#tracker {
+  background: #ffffff;
+  border-top: 1px solid #ebd9cb;
+  border-bottom: 1px solid #ebd9cb;
+}
+
+.order-tracker-card {
+  background: #fffdfa;
+  border: 1px solid var(--coffee-border);
+  border-radius: 24px;
+  box-shadow: var(--coffee-shadow);
+  padding: 35px;
+  position: relative;
+}
+
+/* Order input header bar */
+.order-lookup-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  background: #f5eeea;
+  padding: 12px 18px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+}
+
+.order-lookup-input {
+  border: 1.5px solid #d4c2b4;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  outline: none;
+  background: #ffffff;
+  flex-grow: 1;
+  min-width: 220px;
+}
+
+.order-lookup-input:focus {
+  border-color: var(--coffee-primary);
+  box-shadow: 0 0 0 3px rgba(178, 116, 76, 0.18);
+}
+
+.btn-track-action {
+  background: var(--coffee-primary);
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.btn-track-action:hover {
+  background: var(--coffee-primary-hover);
+}
+
+.btn-demo-order {
+  background: #1f130b;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-demo-order:hover {
+  background: #3c2415;
+}
+
+/* Visual Progress Stepper */
+.stepper-progress-wrapper {
+  position: relative;
+  margin: 40px 0 30px;
+}
+
+.stepper-track-bg {
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  width: 90%;
+  height: 6px;
+  background: #e3d5c9;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.stepper-track-fill {
+  height: 100%;
+  width: 33%;
+  background: linear-gradient(90deg, #27ae60, var(--coffee-primary));
+  border-radius: 10px;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stepper-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  z-index: 2;
+}
+
+.step-node {
+  text-align: center;
+}
+
+.step-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #dfd3c7;
+  color: #8c7a6e;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.step-node.completed .step-circle {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: #ffffff;
+}
+
+.step-node.active .step-circle {
+  background: var(--coffee-primary);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 0 5px rgba(178, 116, 76, 0.25);
+  animation: activeStepPulse 2s infinite;
+}
+
+@keyframes activeStepPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 3px rgba(178, 116, 76, 0.3); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(178, 116, 76, 0.15); }
+  100% { transform: scale(1); box-shadow: 0 0 0 3px rgba(178, 116, 76, 0.3); }
+}
+
+.step-label {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: #1f130b;
+  margin-bottom: 2px;
+}
+
+.step-desc {
+  font-size: 0.75rem;
+  color: var(--coffee-text-muted);
+}
+
+/* Order Info & Live Status Grid */
+.order-details-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.order-feed-card {
+  background: #ffffff;
+  border: 1px solid var(--coffee-border);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ebd9cb;
+}
+
+.feed-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feed-timeline li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 14px;
+  font-size: 0.88rem;
+  color: #38281e;
+}
+
+.feed-timeline li::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coffee-primary);
+}
+
+.feed-timeline li.latest::before {
+  background: #27ae60;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.25);
+}
+
+.feed-time {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--coffee-text-muted);
+  display: block;
+}
+
+/* Barista Card & Countdown */
+.barista-eta-box {
+  background: #1f130b;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eta-countdown-display {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.eta-number {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--coffee-gold);
+  line-height: 1;
+}
+
+.eta-label {
+  font-size: 0.82rem;
+  color: #d1c0b4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+.barista-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.barista-avatar-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--coffee-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border: 2px solid var(--coffee-gold);
+}
+
+.barista-info-text h6 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.barista-info-text span {
+  font-size: 0.78rem;
+  color: var(--coffee-gold);
+}
+
+/* --------------------------------------------------------------------------
+   5. Loyalty Rewards & Bean Club System
+   -------------------------------------------------------------------------- */
+#rewards {
+  background: linear-gradient(180deg, #f7f5f2 0%, #ece5dc 100%);
+}
+
+/* VIP Member Pass */
+.loyalty-pass-card {
+  background: linear-gradient(135deg, #2b180d 0%, #150a04 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(27, 14, 7, 0.35);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(229, 166, 93, 0.35);
+}
+
+.loyalty-pass-card::after {
+  content: '☕';
+  position: absolute;
+  right: -20px;
+  bottom: -35px;
+  font-size: 9rem;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.pass-tier-badge {
+  background: linear-gradient(135deg, #e5a65d, #b2744c);
+  color: #1a0e06;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pass-points-counter {
+  margin-bottom: 20px;
+}
+
+.points-big-num {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--coffee-gold);
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.points-big-num span.unit {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e8d7ca;
+}
+
+.pass-tier-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0 6px;
+}
+
+.pass-tier-fill {
+  height: 100%;
+  width: 75%;
+  background: linear-gradient(90deg, #e5a65d, #f1c40f);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.pass-footer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #cfbeaf;
+  margin-top: 15px;
+}
+
+/* Digital Stamp Card */
+.digital-stamp-card {
+  background: #ffffff;
+  border: 1px solid var(--coffee-border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--coffee-shadow);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stamp-slots-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.stamp-slot {
+  aspect-ratio: 1;
+  border: 2px dashed #d1c0b3;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #b09e90;
+  background: #faf7f4;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.stamp-slot.stamped {
+  border-style: solid;
+  border-color: var(--coffee-primary);
+  background: #f7ede4;
+  color: var(--coffee-primary);
+  transform: scale(1.04);
+}
+
+.stamp-slot.free-reward-slot {
+  border-color: #f39c12;
+  background: #fdf6e7;
+  color: #f39c12;
+}
+
+.stamp-slot.free-reward-slot.stamped {
+  background: #f1c40f;
+  color: #1a120b;
+}
+
+.stamp-slot-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: 4px;
+}
+
+.stamp-actions-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-add-stamp {
+  background: var(--coffee-primary);
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.86rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.btn-add-stamp:hover {
+  background: var(--coffee-primary-hover);
+}
+
+.btn-daily-bonus {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.86rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-daily-bonus:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4);
+}
+
+/* Rewards Store Items */
+.rewards-store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 35px;
+}
+
+.reward-item-card {
+  background: #ffffff;
+  border: 1px solid var(--coffee-border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--coffee-shadow);
+}
+
+.reward-item-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--coffee-primary);
+  box-shadow: var(--coffee-shadow-lg);
+}
+
+.reward-item-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.reward-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: #fbf3ec;
+  color: var(--coffee-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.reward-item-title {
+  font-weight: 800;
+  font-size: 1rem;
+  color: #1a120b;
+  margin: 0;
+}
+
+.reward-cost-tag {
+  color: #e67e22;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.btn-redeem-item {
+  width: 100%;
+  background: #1f130b;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  margin-top: 14px;
+}
+
+.btn-redeem-item:hover {
+  background: var(--coffee-primary);
+}
+
+.btn-redeem-item:disabled {
+  background: #c5b8af;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   6. Virtual Barista AI Chatbot Widget
+   -------------------------------------------------------------------------- */
+.barista-chat-widget-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1050;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b2744c 0%, #1f130b 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(31, 19, 11, 0.45);
+  border: 2px solid #ecd9c6;
+  transition: var(--transition-smooth);
+}
+
+.barista-chat-widget-toggle:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 14px 30px rgba(31, 19, 11, 0.6);
+}
+
+.chat-bubble-ping {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: #e74c3c;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.barista-chat-window {
+  position: fixed;
+  bottom: 105px;
+  right: 30px;
+  width: 390px;
+  max-width: calc(100vw - 40px);
+  height: 560px;
+  max-height: calc(100vh - 140px);
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--coffee-border);
+  z-index: 1050;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUpChat 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpChat {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.barista-chat-window.open {
+  display: flex;
+}
+
+/* Chat Header */
+.chat-window-header {
+  background: linear-gradient(135deg, #22140c 0%, #3a2214 100%);
+  color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-header-barista {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.barista-avatar-chat {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #b2744c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border: 2px solid var(--coffee-gold);
+  position: relative;
+}
+
+.barista-avatar-chat::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: #2ecc71;
+  border: 2px solid #22140c;
+  border-radius: 50%;
+}
+
+.chat-barista-title h5 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.chat-barista-title span {
+  font-size: 0.74rem;
+  color: var(--coffee-gold);
+}
+
+.chat-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-header-btn {
+  background: transparent;
+  border: none;
+  color: #dfd4ca;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.chat-header-btn:hover {
+  color: #ffffff;
+}
+
+/* Chat Message List */
+.chat-messages-body {
+  flex-grow: 1;
+  padding: 18px;
+  overflow-y: auto;
+  background: #fbf9f7;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.chat-msg-row {
+  display: flex;
+  gap: 10px;
+  max-width: 85%;
+}
+
+.chat-msg-row.bot {
+  align-self: flex-start;
+}
+
+.chat-msg-row.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.chat-msg-row.bot .chat-bubble {
+  background: #ffffff;
+  color: #2b180d;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #ebdfd5;
+}
+
+.chat-msg-row.user .chat-bubble {
+  background: var(--coffee-primary);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+/* Quick chips inside chat */
+.chat-chips-tray {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 16px;
+  background: #f5ede6;
+  border-top: 1px solid #ebd9cb;
+  scrollbar-width: none;
+}
+.chat-chips-tray::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-chip-btn {
+  white-space: nowrap;
+  background: #ffffff;
+  border: 1px solid #d9cbbf;
+  color: #4a3325;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.quick-chip-btn:hover {
+  background: var(--coffee-primary);
+  color: #ffffff;
+  border-color: var(--coffee-primary);
+}
+
+/* Chat Input Bar */
+.chat-input-bar {
+  padding: 12px 16px;
+  background: #ffffff;
+  border-top: 1px solid #ebd9cb;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-input-field {
+  flex-grow: 1;
+  border: 1px solid #d8c6b7;
+  border-radius: 20px;
+  padding: 9px 16px;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.chat-input-field:focus {
+  border-color: var(--coffee-primary);
+}
+
+.chat-send-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--coffee-primary);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.chat-send-btn:hover {
+  background: var(--coffee-primary-hover);
+  transform: scale(1.05);
+}
+
+/* Chat Bot item card embedded */
+.chat-product-embed {
+  background: #fbf7f3;
+  border: 1px solid #e2d2c4;
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-product-embed img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.chat-product-embed h6 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1f130b;
+}
+
+.chat-product-embed p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--coffee-primary);
+  font-weight: 700;
+}
+
+.chat-embed-order-btn {
+  background: var(--coffee-primary);
+  color: #ffffff;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Typing animation */
+.typing-indicator {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 12px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #ebd9cb;
+  width: fit-content;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: #b2744c;
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   7. Modals, Toasts & Responsive Tweaks
+   -------------------------------------------------------------------------- */
+.cafe-toast-container {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.cafe-toast {
+  pointer-events: auto;
+  background: #1f130b;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 4px solid var(--coffee-gold);
+  font-size: 0.9rem;
+  animation: toastIn 0.35s ease;
+  min-width: 280px;
+  max-width: 380px;
+}
+
+@keyframes toastIn {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.voucher-modal-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.voucher-code-pill {
+  background: #fdf5ec;
+  border: 2px dashed var(--coffee-primary);
+  color: var(--coffee-dark);
+  font-family: monospace;
+  font-size: 1.4rem;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 15px 0;
+  letter-spacing: 2px;
+}
+
+.qr-code-placeholder {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 15px;
+  background: #f7f3ef;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e1d3c5;
+}
+
+/* Offset back-to-top arrow so it doesn't conflict with Chatbot */
+.arrow {
+  bottom: 110px !important;
+  right: 38px !important;
+  z-index: 999 !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 992px) {
+  .order-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-ribbon-item {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-main-heading {
+    font-size: 1.7rem;
+  }
+  .ai-engine-container {
+    padding: 20px;
+  }
+  .stepper-steps-grid {
+    gap: 8px;
+  }
+  .step-circle {
+    width: 46px;
+    height: 46px;
+    font-size: 1rem;
+  }
+  .step-label {
+    font-size: 0.78rem;
+  }
+  .barista-chat-window {
+    right: 15px;
+    left: 15px;
+    width: auto;
+    bottom: 95px;
+    height: 500px;
+  }
+  .barista-chat-widget-toggle {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    font-size: 1.4rem;
+  }
+  .arrow {
+    bottom: 90px !important;
+    right: 25px !important;
+  }
+}
