@@ -24,22 +24,23 @@ The application features an AI-powered Barista Assistant that helps customers ex
 ## 📸 Project Screenshots
 
 ### 1. Login & Registration
-![Login Page](screenshots/login-page.png)
+
+![Login Page](./Screenshots/login-page.png)
 
 ### 2. AI Recommendation Engine
-![AI Recommendation](screenshots/ai-recommendation.png)
+
+![AI Recommendation](./Screenshots/ai-recommendation.png)
 
 ### 3. Coffee Cafe Homepage
-![Home Page](screenshots/home-page.png)
+
+![Home Page](./Screenshots/home-page.png)
 
 ## 🛠️ Technologies Used
 
-Add the actual technologies and AI services used in your application:
-
-- Frontend: Add your frontend technologies
-- Backend: Add your backend technology
-- AI Integration: Add your AI model or API
-- Database: Add your database (if applicable)
+- **Frontend:** Add your actual frontend technologies.
+- **Backend:** Add your actual backend technology.
+- **AI Integration:** Add your actual AI model or API.
+- **Database:** Add your database, if applicable.
 
 ## ⚙️ Installation & Setup
 
@@ -77,4 +78,4 @@ Project Repository: [AI-Powered-Coffee-Cafe](https://github.com/avimaske0712/AI-
 
 ---
 
-⭐ If you like this project, don't forget to give it a star!﻿# AI-Powered-Coffee-Cafe
+⭐ If you like this project, don't forget to give it a star!
