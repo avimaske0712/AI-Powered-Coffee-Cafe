@@ -137,34 +137,36 @@ section, .about, #gallary {
 
 /* Nav quick link custom styling */
 .nav-barista-btn {
-  background: #1f130b !important;
+  background: #3B1A08 !important;
   color: #ffffff !important;
   border-radius: 25px !important;
   padding: 8px 18px !important;
   margin-left: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  font-size: 0.9rem;
+  border: none !important;
+  font-size: 0.88rem;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px rgba(59,26,8,0.25);
 }
 .nav-barista-btn:hover {
-  background: #ffffff !important;
-  color: var(--coffee-primary) !important;
+  background: #8B4513 !important;
+  color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 18px rgba(139,69,19,0.35);
 }
 
 /* Nav login button & user profile dropdown */
 .nav-login-btn {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: var(--coffee-dark) !important;
+  background: transparent !important;
+  color: #3B1A08 !important;
   border-radius: 25px !important;
   padding: 8px 18px !important;
   margin-left: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  font-size: 0.9rem;
+  border: 1.5px solid #E8D5BC !important;
+  font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
   display: inline-flex;
@@ -173,10 +175,11 @@ section, .about, #gallary {
   transition: var(--transition-smooth);
 }
 .nav-login-btn:hover {
-  background: var(--coffee-dark) !important;
+  background: #3B1A08 !important;
   color: #ffffff !important;
+  border-color: #3B1A08 !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 14px rgba(59,26,8,0.25);
 }
 
 .nav-user-profile-btn {
@@ -222,12 +225,12 @@ section, .about, #gallary {
 
 /* Nav Cart Button */
 .nav-cart-btn {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: var(--coffee-dark) !important;
+  background: #3B1A08 !important;
+  color: #ffffff !important;
   border-radius: 25px !important;
   padding: 7px 14px !important;
   margin-left: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border: none !important;
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
@@ -236,12 +239,13 @@ section, .about, #gallary {
   gap: 6px;
   position: relative;
   transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px rgba(59,26,8,0.2);
 }
 .nav-cart-btn:hover {
-  background: var(--coffee-dark) !important;
+  background: #8B4513 !important;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 18px rgba(139,69,19,0.3);
 }
 .nav-cart-count-badge {
   background: var(--coffee-primary);
@@ -256,54 +260,81 @@ section, .about, #gallary {
    2. Hero Interactive Bar & Badges
    -------------------------------------------------------------------------- */
 .hero-buttons-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 240px));
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+#btn,
+.hero-secondary-btn {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: inline-flex;
   align-items: center;
-  margin-top: 25px;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 !important;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+#btn {
+  background: #3B1A08;
+  color: #ffffff;
+  border: 1.5px solid #3B1A08;
+  box-shadow: 0 6px 16px rgba(59, 26, 8, 0.24);
+  cursor: pointer;
+  letter-spacing: 0.2px;
+}
+
+#btn:hover {
+  background: #8B4513;
+  border-color: #8B4513;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(139, 69, 19, 0.35);
 }
 
 .hero-secondary-btn {
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
-  color: #ffffff;
-  padding: 8px 22px;
-  font-weight: 700;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: var(--transition-smooth);
-  cursor: pointer;
-  font-size: 0.95rem;
+  background: rgba(59, 26, 8, 0.06);
+  border: 1.5px solid rgba(59, 26, 8, 0.2);
+  color: #3B1A08;
 }
 
 .hero-secondary-btn:hover {
-  background: #ffffff;
-  color: var(--coffee-dark);
+  background: #3B1A08;
+  color: #ffffff;
+  border-color: #3B1A08;
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(59, 26, 8, 0.22);
 }
 
 .hero-features-ribbon {
-  background: rgba(34, 20, 12, 0.85);
+  background: rgba(255, 248, 240, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid #E8D5BC;
   padding: 18px 25px;
   margin-top: 50px;
   max-width: 1050px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.12);
 }
 
 .hero-ribbon-item {
   display: flex;
   align-items: center;
   gap: 14px;
-  color: #ffffff;
+  color: #3B1A08;
   padding: 6px 12px;
   text-decoration: none;
   transition: var(--transition-smooth);
@@ -311,20 +342,20 @@ section, .about, #gallary {
 }
 
 .hero-ribbon-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--coffee-gold);
+  background: rgba(139, 69, 19, 0.1);
+  color: #8B4513;
 }
 
 .hero-ribbon-icon {
   width: 44px;
   height: 44px;
-  background: rgba(178, 116, 76, 0.35);
+  background: linear-gradient(135deg, #8B4513, #C8842A);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  color: var(--coffee-gold);
+  color: #ffffff;
   flex-shrink: 0;
 }
 
@@ -332,12 +363,12 @@ section, .about, #gallary {
   margin: 0;
   font-size: 0.92rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #3B1A08;
 }
 
 .hero-ribbon-text span {
   font-size: 0.78rem;
-  color: #d1c5be;
+  color: #8C7A6B;
 }
 
 /* --------------------------------------------------------------------------

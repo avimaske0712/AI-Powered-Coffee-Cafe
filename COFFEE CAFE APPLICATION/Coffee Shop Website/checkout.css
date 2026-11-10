@@ -663,13 +663,25 @@ body.checkout-page {
 }
 
 .app-logo-box {
-  width: 64px;
-  height: 46px;
+  width: 76px;
+  height: 48px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.app-logo-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.payment-app-card:hover .app-logo-box img {
+  transform: scale(1.08);
 }
 
 .app-logo-box svg {

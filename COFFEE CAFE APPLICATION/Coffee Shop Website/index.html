@@ -45,7 +45,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#" id="logo"><img src="./images/logo.png" alt="Coffee Cafe"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span><i class="fa-solid fa-bars" style="color: white; font-size: 23px;"></i></span>
+        <span><i class="fa-solid fa-bars" style="color: #3B1A08; font-size: 23px;"></i></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -105,15 +105,20 @@
   <!-- home section -->
   <section id="home">
     <div class="content">
-      <h3>Start Your Day With a <br> Fresh Coffee</h3>
-      <p>Where the aroma of fresh coffee meets cutting-edge artisan craft.
-        <br> Welcome to the future of cafe indulgence.
-        <br>"𝘾𝙤𝙛𝙛𝙚𝙚 𝘾𝙖𝙛𝙚"
+
+      <!-- Tagline -->
+      <span class="home-tagline">Your Daily Dose of Comfort</span>
+
+      <!-- Main heading -->
+      <h3>Welcome to Your<br><span>Daily Brew Heaven</span></h3>
+
+      <p>Experience rich, handcrafted blends brewed with care and conscience.<br>
+        Where the aroma of artisan coffee meets cutting-edge AI craft.
       </p>
-      
-      <!-- Hero action buttons -->
+
+      <!-- Primary CTA -->
       <div class="hero-buttons-group">
-        <button id="btn">Explore Menu</button>
+        <button id="btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">☕ Order Now</button>
         <a href="#recommender" class="hero-secondary-btn">
           <i class="fa-solid fa-brain"></i> AI Coffee Matchmaker
         </a>
@@ -125,8 +130,55 @@
         </a>
       </div>
 
-      <!-- Feature highlight ribbon -->
-      <div class="hero-features-ribbon row g-3 mt-4">
+      <!-- Best Sellers -->
+      <div class="home-bestsellers">
+        <p class="home-bestsellers-label">Best Sellers</p>
+        <div class="home-bestsellers-grid">
+
+          <!-- Card 1: Espresso -->
+          <div class="home-bs-card home-bs-dark">
+            <div class="home-bs-img">
+              <img src="./images/espresso-cup.png" alt="Espresso Coffee">
+            </div>
+            <div class="home-bs-name">Espresso</div>
+            <div class="home-bs-desc">Espresso is a bold, concentrated shot of coffee.</div>
+            <div class="home-bs-footer">
+              <span class="home-bs-price">₹549</span>
+              <a href="#menu" class="home-bs-btn">Order Now</a>
+            </div>
+          </div>
+
+          <!-- Card 2: Americano (highlighted) -->
+          <div class="home-bs-card home-bs-primary">
+            <div class="home-bs-img">
+              <img src="./images/americano-cup.png" alt="Americano Coffee">
+            </div>
+            <div class="home-bs-name">Americano</div>
+            <div class="home-bs-desc">Americano is a smooth espresso diluted with hot water.</div>
+            <div class="home-bs-footer">
+              <span class="home-bs-price">₹400</span>
+              <a href="#menu" class="home-bs-btn">Order Now</a>
+            </div>
+          </div>
+
+          <!-- Card 3: Cappuccino -->
+          <div class="home-bs-card home-bs-primary">
+            <div class="home-bs-img">
+              <img src="./images/cappuccino-cup.png" alt="Cappuccino Coffee">
+            </div>
+            <div class="home-bs-name">Cappuccino</div>
+            <div class="home-bs-desc">A creamy blend of espresso, steamed milk, and airy foam.</div>
+            <div class="home-bs-footer">
+              <span class="home-bs-price">₹130</span>
+              <a href="#menu" class="home-bs-btn">Order Now</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Feature ribbon -->
+      <div class="hero-features-ribbon row g-3 mt-4" style="display:none;">
         <div class="col-md-3 col-6">
           <a href="javascript:void(0)" class="hero-ribbon-item" onclick="document.getElementById('baristaChatToggle').click()">
             <div class="hero-ribbon-icon"><i class="fa-solid fa-robot"></i></div>
@@ -165,6 +217,12 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Right Hero Coffee Showcase -->
+    <div class="hero-image-wrap">
+      <div class="hero-coffee-glow"></div>
+      <img src="./images/hero-coffee-splash.png" alt="Handcrafted Artisan Coffee" class="hero-coffee-img">
     </div>
   </section>
   <!-- home section -->
@@ -999,7 +1057,7 @@
       <i class="fa-brands fa-pinterest-p"></i>
     </div>
     <div class="credite text-center">
-      Designed By <a href="#">Hitesh&Avinash</a>
+      Designed By <a href="#">Avinash Maske</a>
     </div>
     <div class="copyright text-center">
       &copy; Copyright <strong><span>𝘾𝙤𝙛𝙛𝙚𝙚 𝘾𝙖𝙛𝙚</span></strong>. All Rights Reserved
